@@ -1,19 +1,25 @@
 {
-  "name": "post-author-joins",
+  "name": "project2x4-re.mixtape",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "dependencies": {
+    "lru-cache": "^5.1.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "lint": "eslint **/*.js --quiet"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/92til-infinity/Project2x4-Re.MixTape.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.3",
-    "mysql2": "^1.6.4",
-    "sequelize": "^4.41.2"
-  }
+  "bugs": {
+    "url": "https://github.com/92til-infinity/Project2x4-Re.MixTape/issues"
+  },
+  "homepage": "https://github.com/92til-infinity/Project2x4-Re.MixTape#readme"
 }
