@@ -4,7 +4,11 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "lru-cache": "^5.1.1"
+    "express": "^4.17.1",
+    "lru-cache": "^5.1.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^6.3.1"
   },
   "devDependencies": {},
   "scripts": {
