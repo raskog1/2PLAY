@@ -1,45 +1,62 @@
-var db = require("../models");
+const db = require("../models");
+const { Op } = require("sequelize");
 
-module.exports = function (app) {
-  app.get("/api/authors", function (req, res) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Author.findAll({
-      include: [db.Post]
-    }).then(function (dbAuthor) {
-      res.json(dbAuthor);
+module.exports = function(app) {
+  // Get all tracks in songs database
+  app.get("/api/songs", (req, res) => {
+    db.Song.findAll({}).then(function(allSongs) {
+      res.json(allSongs);
     });
   });
 
-  app.get("/api/authors/:id", function (req, res) {
-    // Here we add an "include" property to our options in our findOne query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
-    db.Author.findOne({
+  // Get all tracks missing pilot ratings
+  app.get("/api/songs/pilot", (req, res) => {
+    db.Song.findAll({
       where: {
-        id: req.params.id
+        pilot_rating: {
+          [Op.is]: null,
+        },
       },
-      include: [db.Post]
-    }).then(function (dbAuthor) {
-      res.json(dbAuthor);
+    }).then(function(unratedSongs) {
+      res.json(unratedSongs);
     });
   });
 
-  app.post("/api/authors", function (req, res) {
-    db.Author.create(req.body).then(function (dbAuthor) {
-      res.json(dbAuthor);
-    });
-  });
-
-  app.delete("/api/authors/:id", function (req, res) {
-    db.Author.destroy({
+  // Get all tracks missing copilot ratings
+  app.get("/api/songs/copilot", (req, res) => {
+    db.Song.findAll({
       where: {
-        id: req.params.id
-      }
-    }).then(function (dbAuthor) {
-      res.json(dbAuthor);
+        copilot_rating: {
+          [Op.is]: null,
+        },
+      },
+    }).then(function(unratedSongs) {
+      res.json(unratedSongs);
     });
   });
 
+  // Post a new song to the songs table (without ratings)
+  app.post("/api/songs", (req, res) => {
+    db.Song.create(req.body).then(function(newSong) {
+      res.json(newSong);
+    });
+  });
+
+  // Update ratings for an existing song in the songs table
+  app.put("/api/songs", (req, res) => {
+    db.Song.update(
+      {
+        pilot_rating: req.body.pilot_rating,
+        copilot_rating: req.body.copilot_rating,
+        avg_rating: (pilot_rating + copilot_rating) / 2,
+      },
+      {
+        where: {
+          id: req.body.id,
+        },
+      }
+    ).then(function(updatedSong) {
+      res.json(updatedSong);
+    });
+  });
 };
