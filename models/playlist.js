@@ -1,32 +1,20 @@
-// Not sure if this will be needed, can potentially store
-// completed playlists to this database.
+// Create playlists table with association to songs table
 
+module.exports = function(sequelize, DataTypes) {
+  const Playlist = sequelize.define("Playlist", {
+    name: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+  });
 
-// module.exports = function(sequelize, DataTypes) {
-//   var Post = sequelize.define("Post", {
-//     title: {
-//       type: DataTypes.STRING,
-//       allowNull: false,
-//       validate: {
-//         len: [1]
-//       }
-//     },
-//     body: {
-//       type: DataTypes.TEXT,
-//       allowNull: false,
-//       len: [1]
-//     }
-//   });
-
-//   Post.associate = function(models) {
-//     // We're saying that a Post should belong to an Author
-//     // A Post can't be created without an Author due to the foreign key constraint
-//     Post.belongsTo(models.Author, {
-//       foreignKey: {
-//         allowNull: false
-//       }
-//     });
-//   };
-
-//   return Post;
-// };
+  Playlist.associate = function(models) {
+    Playlist.hasMany(models.Song, {
+      onDelete: "CASCADE",
+    });
+  };
+  return Playlist;
+};

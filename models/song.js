@@ -1,48 +1,79 @@
-// Copilot and Playlist columns allow us to do everything in one database
+// Create individual Song rows with Spotify track ID information to easily
+// speak with the Spotify API
 
-module.exports = function (sequelize, DataTypes) {
-  const Songs = sequelize.define("Songs", {
+module.exports = function(sequelize, DataTypes) {
+  const Song = sequelize.define("Song", {
     artist: {
       type: DataTypes.STRING(64),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
     },
     title: {
       type: DataTypes.STRING(64),
-      allowNull: false
-    },
-    copilot: {
-      type: DataTypes.STRING(64),
-      allowNull: false
-    },
-    playlist: {
-      type: DataTypes.STRING(64),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
     },
     trackId: {
       type: DataTypes.STRING(128),
-      allowNull: false
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
     },
-    user_rating: {
+    pilot: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    copilot: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    playlist: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    pilot_rating: {
       type: DataTypes.INTEGER(1),
       validate: {
         max: 5,
-        min: 1
-      }
+        min: 1,
+      },
     },
     copilot_rating: {
       type: DataTypes.INTEGER(1),
       validate: {
         max: 5,
-        min: 1
-      }
+        min: 1,
+      },
     },
     avg_rating: {
-      type: DataTypes.DECIMAL(3, 2),
+      type: DataTypes.DECIMAL(2, 1),
       validate: {
         max: 5,
-        min: 1
-      }
+        min: 1,
+      },
     },
   });
-  return Songs;
+
+  Song.associate = function(models) {
+    Song.belongsTo(models.Playlist, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
+  return Song;
 };
