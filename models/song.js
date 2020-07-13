@@ -24,26 +24,9 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       },
     },
-    pilot: {
-      type: DataTypes.STRING(64),
+    playlistID: {
+      type: DataTypes.INTEGER(10),
       allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
-    copilot: {
-      type: DataTypes.STRING(64),
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
-    },
-    playlist: {
-      type: DataTypes.STRING(64),
-      allowNull: false,
-      validate: {
-        len: [1],
-      },
     },
     pilot_rating: {
       type: DataTypes.INTEGER(1),
