@@ -9,6 +9,24 @@ module.exports = function(sequelize, DataTypes) {
         len: [1],
       },
     },
+    pilot: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    copilot: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      validate: {
+        len: [1],
+      },
+    },
+    completed: {
+      type: DataTypes.BOOLEAN,
+      default: false,
+    },
   });
 
   Playlist.associate = function(models) {
