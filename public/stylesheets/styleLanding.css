@@ -1,0 +1,37 @@
+body {
+  background-color: #3f3e66;
+}
+
+.container {
+  background-color: #3f3e66;
+  margin-top: 100px;
+}
+
+.gif {
+  width: 700px;
+  height: 500px;
+}
+
+.logo {
+  width: 270px;
+  height: 270px;
+  margin-top: 55px;
+  margin-left: 45px;
+  position: relative;
+}
+
+.fa-play-circle {
+  font-size: 90px;
+  color: #ffe0ac;
+  margin-left: 200px;
+}
+
+.play {
+  bottom: 90px;
+}
+
+.play,
+.logo {
+  display: inline;
+  position: relative;
+}
