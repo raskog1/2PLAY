@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   // jQuery references for playlist pilot, copilot, and name
   const pilotInput = $("#pilot");
   const copilotInput = $("#copilot");
@@ -37,3 +37,7 @@ $(document).ready(function() {
     });
   }
 });
+
+
+
+// search function below for use in Searchdummyfile.HTML

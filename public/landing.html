@@ -1,44 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>2PLAY</title>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-      crossorigin="anonymous"
-    />
-    <link href="stylesheets/styleLanding.css" rel="stylesheet" />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="col"></div>
-        <div class="col-xs-12 col-xs-5 text-center">
-          <img src="images/logo1.png" alt="2play logo" class="logo" />
-          <br />
-          <!-- <div class="container play">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2PLAY</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
+  <link href="stylesheets/styleLanding.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col"></div>
+      <div class="col-xs-12 col-xs-5 text-center">
+        <img src="images/logo1.png" alt="2play logo" class="logo" />
+        <br />
+        <!-- <div class="container play">
                     <a href="#" class="button"></a><i class="far fa-play-circle"></i></a>
                 </div> -->
+
+        <!-- search code for you to move or keep -->
+        <div class="container">
+          <h1>Search for an Artist</h1>
+          <p>Type an artist name and click on "Search". Then, click on any album from the results to play 30 seconds of
+            its first track.</p>
+          <form id="search-form">
+            <input type="text" id="query" value="" class="form-control" placeholder="Type an Artist Name" />
+            <input type="submit" id="search" class="btn btn-primary" value="Search" />
+          </form>
+          <div id="results"></div>
         </div>
-        <a id="play-video" class="video-play-button" href="#">
-          <span></span>
-        </a>
-        <!-- <div id="video-overlay" class="video-overlay">
+        <script id="results-template" type="text/x-handlebars-template">
+                  {{#each albums.items}}
+                  <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
+                  {{/each}}
+              </script>
+        <!-- search code for you to move or keep -->
+
+
+      </div>
+      <a id="play-video" class="video-play-button" href="#">
+        <span></span>
+      </a>
+      <!-- <div id="video-overlay" class="video-overlay">
           <a class="video-overlay-close">&times;</a>
         </div> -->
-        <div class="col-xs-12 col-xs-5">
-          <img src="images/cassette_tape.gif" alt="Tape Recorder" class="gif" />
-        </div>
-        <div class="col"></div>
+      <div class="col-xs-12 col-xs-5">
+        <img src="images/cassette_tape.gif" alt="Tape Recorder" class="gif" />
       </div>
+      <div class="col"></div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

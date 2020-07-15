@@ -1,47 +1,18 @@
-button.submit {
-  float: right;
+body {
+  padding: 20px;
 }
-
-form#cms {
-  margin-top: 50px;
+#search-form, .form-control {
+  margin-bottom: 20px;
 }
-
-#cms textarea {
-  resize: none;
+.cover {
+  width: 300px;
+  height: 300px;
+  display: inline-block;
+  background-size: cover;
 }
-
-.card-header button.delete,
-button.edit {
-  float: right;
-  margin: 5px;
+.cover:hover {
+  cursor: pointer;
 }
-
-.author-container {
-  margin-top: 50px;
-}
-
-.author-list {
-  margin-top: 25px;
-}
-
-.blog-container {
-  margin-top: 30px;
-}
-
-.blog {
-  margin-top: 30px;
-}
-
-.hidden {
-  display: none;
-}
-
-#author-name {
-  width: 100%;
-  height: 35px;
-  margin-top: 5px;
-}
-
-.top-30 {
-  margin-top: 30px;
+.cover.playing {
+  border: 5px solid #e45343;
 }
