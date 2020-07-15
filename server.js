@@ -26,15 +26,15 @@ app.use(express.static("public"));
 require("./routes/html-routes.js")(app);
 require("./routes/song-api-routes.js")(app);
 require("./routes/playlist-api-routes.js")(app);
+require("./routes/spotify-auth.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
 
 // // Requiring necessary npm packages
 // const express = require("express");
