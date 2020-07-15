@@ -23,6 +23,17 @@ module.exports = function(app) {
     });
   });
 
+  // Get a single playlist (complete or incomplete)
+  app.get("/api/playlists/:id", (req, res) => {
+    db.Playlist.findOne({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function(playlist) {
+      res.json(playlist);
+    });
+  });
+
   // Create a new, empty playlist
   app.post("/api/playlists", (req, res) => {
     db.Playlist.create(req.body).then(function(newPlayist) {
