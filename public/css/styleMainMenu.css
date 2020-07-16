@@ -3,8 +3,8 @@ body {
 }
 
 .mediaButton {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
 
 .vertical-center {
@@ -27,6 +27,6 @@ h2 {
   color: #ffe0ac;
   font-family: 'Tw Cen MT';
   font-weight: bold;
-  width: 250px;
-  font-size: 34px;
+  width: 200px;
+  font-size: 29px;
 }

@@ -1,0 +1,14 @@
+body {
+  background-color: #3f3e66;
+  font-family: 'Tw Cen MT';
+  font-weight: bold;
+}
+
+.navbar {
+  background-color: #3f3e66;
+}
+
+form.signup,
+form.login {
+  margin-top: 50px;
+}
