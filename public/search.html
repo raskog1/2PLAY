@@ -1,0 +1,71 @@
+<html>
+​
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet" />
+    <!-- <link href="css/searchcss.css" rel="stylesheet" /> -->
+</head>
+​
+
+<body>
+    <div class="s01">
+        <form>
+            <div class="inner-form">
+                <div class="input-field first-wrap">
+                    <input id="songSearchInput" type="text" placeholder="What song are you looking for?" />
+                </div>
+                <div class="input-field second-wrap">
+                    <input id="artistSearchInput" type="text" placeholder="Artist" />
+                </div>
+                <div class="input-field third-wrap">
+                    <input type="button" id="search" class="btn btn-primary" value="Search" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script>
+        ​
+        // var queryURL = "https://api.spotify.com/v1/search?q=" + trackTitle +  "=track&market=US";
+        //   var searchTracks = function (query) {
+        //       $.ajax({
+        //           url: queryURL,
+        //           beforeSend: function (xhr) {
+        //               xhr.setRequestHeader("Authorization", "BQCkpgvgBTIfD6PTn-9gFMcIsfi21zLaOhIMMVo7_3nimXAroUeSXDae3EXHdG_FZ6W60A80TlGhPJNAuxFLkvHOzK5UG6fX6waZ9wrHqMGABNTzr9_plttDayBljsMAH7Mo615a_Fgtz9oLtdHpPsf30f3wiYaZkkNOR5Gyxku056gNQbqNM534CEKI1cRnrTj50zinnNfoJZ2snePb1jVzgWawcSGc0nAH-ub-28GIrNH7l4YV1lrE0YPRKMuI-5SZntcG6QzgN-0");
+        //           },
+        //           method: "GET",
+        //           dataType: 'json',
+        //           contentType: 'application/json',
+        //       }).then(function (response) {
+        //           console.log(response);
+        //       });
+        //   };
+        //   document.getElementById('search').addEventListener('click', function (e) {
+        //       e.preventDefault();
+        //       searchTracks(document.getElementById('songSearchInput').value);
+        //   }, false);
+
+        var searchTracks = function(query) {
+            $.ajax({
+                url: 'https://api.spotify.com/v1/search',
+                data: {
+                    q: query,
+                    type: 'track'
+                },
+                success: function(response) {
+                    console.log(response);
+                }
+            });
+        };​​
+        document.getElementById('search').addEventListener('click', function(e) {
+            e.preventDefault();
+            searchTracks(document.getElementById('songSearchInput').value);
+        }, false);​
+    </script>
+</body>
+​
+
+</html>

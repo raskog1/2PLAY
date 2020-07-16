@@ -1,38 +1,15 @@
-body {
-    background-color: #FFE0AC;
-    overflow: hidden;
-}
-
-.flex-grid {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-.col {
-    flex: 1 1 10em;
-    background-color: #3F3E66;
-    border: 2px solid black;
-    margin: 0.5em;
-    padding: 0.5em;
-}
-
-@media (max-width: 400px) {
-    .flex-grid {
-        display: block;
+    body {
+        background-color: #FFE0AC;
+        overflow: hidden;
     }
-}
-
-.flex-grid-thirds {
-    display: flex;
-    justify-content: space-between;
-}
-
-.flex-grid-thirds .col {
-    width: 32%;
-}
-
-.navLogo {
-    height: auto;
-    width: auto;
-}
+    
+    .row {
+        display: flex;
+    }
+    
+    .column {
+        flex: 50%;
+        border: 1px solid black;
+        flex-direction: column;
+        justify-content: space-between;
+    }
