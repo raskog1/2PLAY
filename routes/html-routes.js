@@ -44,7 +44,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/search.html"));
   });
 
-  // app.get("/*", (req, res) => {
+  // app.get("/main", (req, res) => {
   //   res.sendFile(path.join(__dirname, "../public/landing.html"));
   // });
 };

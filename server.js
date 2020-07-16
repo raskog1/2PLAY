@@ -7,6 +7,7 @@
 const express = require("express");
 const session = require("express-session");
 const passport = require("./config/passport");
+const exphbs = require("express-handlebars");
 
 // Sets up the Express App
 // =============================================================
@@ -23,6 +24,10 @@ app.use(express.json());
 // Static directory
 app.use(express.static("public"));
 
+// Handlebars engine
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // We need to use sessions to keep track of our user's Login status
 app.use(session({ secret: "kcat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
@@ -34,7 +39,8 @@ require("./routes/html-routes.js")(app);
 require("./routes/song-api-routes.js")(app);
 require("./routes/playlist-api-routes.js")(app);
 require("./routes/spotify-routes.js")(app);
-require("./routes/passport-api-routes")(app);
+require("./routes/passport-api-routes.js")(app);
+require("./routes/search-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

@@ -76,4 +76,6 @@
       false
     );
   }
+
+  console.log(access_token);
 })();
