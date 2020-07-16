@@ -1,52 +1,52 @@
 form.signup,
 form.login {
-    margin-top: 50px;
+  margin-top: 50px;
 }
 
 body {
-    background-color: #3F3E66;
-    overflow: hidden;
+  background-color: #3f3e66;
+  overflow: hidden;
 }
 
 label,
 h2,
 p {
-    color: #FFE0AC;
+  color: #ffe0ac;
 }
 
 .signUpButton {
-    background: #3498db;
-    width: 180px;
-    padding: 4px 0;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    border-radius: 3px;
+  background: #3498db;
+  width: 180px;
+  padding: 4px 0;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 3px;
 }
 
 button {
-    font-family: 'Roboto';
-    text-align: center;
-    text-transform: uppercase;
-    color: #FFF;
-    user-select: none;
+  font-family: 'tw_cen_mt_stdbold';
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  user-select: none;
 }
 
 .signUpButton:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .signUpButton:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 10%;
-    border-radius: 50%;
-    background-color: darken(#f1c40f, 20%);
-    opacity: 0.4;
-    bottom: -30px;
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 10%;
+  border-radius: 50%;
+  background-color: darken(#f1c40f, 20%);
+  opacity: 0.4;
+  bottom: -30px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
@@ -62,7 +62,6 @@ html {
     font-family: 'Lato', sans-serif;
 } */
 
-
 /* .container {
     width: 400px;
     height: 400px;
@@ -76,52 +75,53 @@ html {
 } */
 
 .center {
-    width: 180px;
-    height: 60px;
-    position: relative;
+  width: 180px;
+  height: 60px;
+  position: relative;
 }
 
 .btn {
-    width: 180px;
-    height: 60px;
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid #FFE0AC;
-    outline: none;
-    transition: 1s ease-in-out;
+  width: 180px;
+  height: 60px;
+  cursor: pointer;
+  background: transparent;
+  border: 1px solid #ffe0ac;
+  outline: none;
+  transition: 1s ease-in-out;
 }
 
 svg {
-    position: absolute;
-    left: 0;
-    top: 0;
-    fill: none;
-    stroke: #fff;
-    stroke-dasharray: 150 480;
-    stroke-dashoffset: 150;
-    transition: 1s ease-in-out;
+  position: absolute;
+  left: 0;
+  top: 0;
+  fill: none;
+  stroke: #fff;
+  stroke-dasharray: 150 480;
+  stroke-dashoffset: 150;
+  transition: 1s ease-in-out;
 }
 
 .btn:hover {
-    transition: 1s ease-in-out;
-    background: #FFE0AC;
+  transition: 1s ease-in-out;
+  background: #ffe0ac;
 }
 
 .btn:hover svg {
-    stroke-dashoffset: -480;
+  stroke-dashoffset: -480;
 }
 
 .btn span {
-    color: white;
-    font-size: 18px;
-    font-weight: 100;
+  color: white;
+  font-size: 18px;
+  font-weight: 100;
 }
 
 .navbar {
-    background-color: #FFE0AC;
-    padding: 0;
-    border: 0;
-    height: 100px;
+  background-color: #ffe0ac;
+  padding: 0;
+  border: 0;
+  height: 100px;
 }
 
-.navLogo {}
+.navLogo {
+}
