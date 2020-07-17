@@ -29,3 +29,22 @@ h2 {
   width: 200px;
   font-size: 29px;
 }
+
+header {
+  background-color: #ffe0ac;
+  padding: 0;
+  border: 0;
+  height: 100px;
+  position: relative;
+}
+
+.header img {
+  display: inline;
+}
+
+.header h1 {
+  color: #3f3e66;
+  font-family: 'tw_cen_mt_stdbold';
+  padding-left: 10px;
+  display: inline;
+}
