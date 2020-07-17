@@ -1,9 +1,10 @@
 //const results = require("../public/js/song-search");
 const axios = require("axios");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/api/search/:title/:artist?", (req, res) => {
-    const access_token = process.env.spotify_token;
+    const access_token = req.cookies["spotifyAccessToken"];
+    console.log(access_token);
     let queryURL =
       "https://api.spotify.com/v1/search?type=track&market=US&q=" +
       req.params.title;
