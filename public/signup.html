@@ -8,14 +8,21 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css"
     />
+    <link rel="stylesheet" href="css/fonts/styleFonts.css" />
     <link href="css/styleSignUp.css" rel="stylesheet" />
   </head>
 
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header"></div>
-      </div>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img
+          src="images/cassette_tape3.png"
+          class="navLogo"
+          width="150"
+          height="100"
+          alt="2PlayLogo"
+        />
+      </a>
     </nav>
     <div class="container">
       <div class="row">
@@ -41,7 +48,7 @@
               />
             </div>
             <div
-              style="display: none"
+              style="display: none;"
               id="alert"
               class="alert alert-danger"
               role="alert"
@@ -52,7 +59,27 @@
               ></span>
               <span class="sr-only">Error:</span> <span class="msg"></span>
             </div>
-            <button type="submit" class="btn btn-default">Sign Up</button>
+            <!-- <button type="submit" class="btn btn-default">Sign Up</button> -->
+            <div class="center">
+              <button class="btn loginButton">
+                <svg
+                  width="180px"
+                  height="60px"
+                  viewBox="0 0 180 60"
+                  class="border"
+                >
+                  <polyline
+                    points="179,1 179,59 1,59 1,1 179,1"
+                    class="bg-line"
+                  />
+                  <polyline
+                    points="179,1 179,59 1,59 1,1 179,1"
+                    class="hl-line"
+                  />
+                </svg>
+                <span>Login</span>
+              </button>
+            </div>
           </form>
           <br />
           <p>Or log in <a href="/roomLogin">here</a></p>

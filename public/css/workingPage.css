@@ -1,0 +1,15 @@
+    body {
+        background-color: #FFE0AC;
+        overflow: hidden;
+    }
+    
+    .row {
+        display: flex;
+    }
+    
+    .column {
+        flex: 50%;
+        border: 1px solid black;
+        flex-direction: column;
+        justify-content: space-between;
+    }
