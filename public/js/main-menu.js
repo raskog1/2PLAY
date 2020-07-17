@@ -35,5 +35,3 @@ $(document).ready(function () {
   $('#mediaButton2').on('click', function () {});
   $('#mediaButton3').on('click', function () {});
 });
-
-//hi
