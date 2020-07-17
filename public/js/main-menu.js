@@ -1,29 +1,30 @@
 $(document).ready(function () {
-  //Same functions if user clicks on either text or media buttons. Might have to
-  //remove marginTop animation so that the buttons move into the navbar
   initClick();
 
   function initClick() {
     $('.mediaText').on('click', function () {
-      $('h2').fadeOut(700, function () {});
+      $('h2').fadeOut(600, function () {});
 
-      $('.mediaButton').animate(
+      var animation = $('.mediaButton').delay(800).animate(
         {
           width: '50px',
           height: '50px',
-          marginTop: '-=300px',
+          marginTop: '-=530px',
+          position: 'absolute',
         },
         1500
       );
+      animation.off('click');
     });
     $('.mediaButton').on('click', function () {
-      $('h2').fadeOut(700, function () {});
+      $('h2').fadeOut(600, function () {});
 
-      var animation = $('.mediaButton').animate(
+      var animation = $('.mediaButton').delay(800).animate(
         {
           width: '50px',
           height: '50px',
-          marginTop: '-=300px',
+          marginTop: '-=530px',
+          position: 'absolute',
         },
         1500
       );
@@ -35,5 +36,3 @@ $(document).ready(function () {
   $('#mediaButton2').on('click', function () {});
   $('#mediaButton3').on('click', function () {});
 });
-
-//hi
