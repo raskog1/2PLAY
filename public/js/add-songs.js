@@ -1,5 +1,3 @@
-//writes to and pulls from database- need in main.handlebars
-
 $(document).ready(() => {
   getPilotUnrated();
   getCopilotUnrated();
@@ -20,7 +18,7 @@ $(document).ready(() => {
   });
 
   function addSong(songData) {
-    $.post('/api/songs', songData).then(
+    $.post("/api/songs", songData).then(
       console.log(`Successfully added ${songData.title} to the database`)
     );
   }

@@ -28,28 +28,8 @@ h2 {
     font-family: 'tw_cen_mt_stdbold';
     width: 200px;
     font-size: 29px;
-}
 
 header {
-<<<<<<< HEAD
-  background-color: #ffe0ac;
-  padding: 0;
-  border: 0;
-  height: 100px;
-  z-index: -1;
-}
-
-.header img {
-  display: inline;
-}
-
-.header h1 {
-  color: #3f3e66;
-  font-family: 'tw_cen_mt_stdbold';
-  padding-left: 10px;
-  display: inline;
-}
-=======
     background-color: #ffe0ac;
     padding: 0;
     border: 0;
@@ -67,4 +47,3 @@ header {
     padding-left: 10px;
     display: inline;
 }
->>>>>>> 1e6af57ea0f16ff9172e278684643cff536ab684
