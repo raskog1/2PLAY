@@ -18,6 +18,11 @@ module.exports = function(app) {
   });
 
   app.get("/rooms", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/rooms.html"));
+    console.log(req.query.code);
+  });
+
+  app.get("/rooms", (req, res) => {
     // If the user already has an account send them to the members page
     if (req.user) {
       res.redirect("/members");
