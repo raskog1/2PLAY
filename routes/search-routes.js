@@ -1,9 +1,10 @@
 const axios = require("axios");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.get("/api/search/:title/:artist?", (req, res) => {
     const access_token = req.cookies["spotifyAccessToken"];
-    //console.log(access_token);
+    // console.log(access_token);
+    // req.cookies[spotifyAccessToken];
 
     // Executes search based on track title
     let queryURL =
@@ -23,6 +24,7 @@ module.exports = function(app) {
       method: "GET",
     }).then((response) => {
       res.json(response.data);
+      console.log(response.data)
     });
   });
 };
