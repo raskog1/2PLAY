@@ -2,12 +2,12 @@ $(document).ready(() => {
   getPilotUnrated();
   getCopilotUnrated();
 
-  $("body").on("click", ".suggest", function(event) {
+  $('body').on('click', '.suggest', function (event) {
     event.preventDefault();
 
-    const title = $(this).data("title");
-    const artist = $(this).data("artist");
-    const id = $(this).data("id");
+    const title = $(this).data('title');
+    const artist = $(this).data('artist');
+    const id = $(this).data('id');
     const songData = {
       title: title,
       artist: artist,
@@ -24,7 +24,7 @@ $(document).ready(() => {
   }
 
   function getPilotUnrated() {
-    $.get("/api/songs/pilot", function(unrated) {
+    $.get('/api/songs/pilot', function (unrated) {
       for (let i = 0; i < unrated.length; i++) {
         console.log(unrated[i]);
       }
@@ -32,7 +32,7 @@ $(document).ready(() => {
   }
 
   function getCopilotUnrated() {
-    $.get("/api/songs/copilot", function(unrated) {
+    $.get('/api/songs/copilot', function (unrated) {
       for (let i = 0; i < unrated.length; i++) {
         console.log(unrated[i]);
       }
