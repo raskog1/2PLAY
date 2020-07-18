@@ -1,6 +1,11 @@
 //required in new.handlebars, creates a new playlist
 
 $(document).ready(function () {
+  $('.mediaButton').css({
+    width: '50px',
+    height: '50px',
+    marginTop: '-=530px',
+  });
   // jQuery references for playlist pilot, copilot, and name
   const pilotInput = $('#pilot');
   const copilotInput = $('#copilot');

@@ -1,6 +1,11 @@
 //need for complete.handlebars and existing.handlebars
 
 $(document).ready(function () {
+  $('.mediaButton').css({
+    width: '50px',
+    height: '50px',
+    marginTop: '-=530px',
+  });
   $(formIDgoeshere).on('submit', viewComplete); //UPDATE HERE!!!
   $(formIDgoeshere).on('submit', viewIncomplete); //UPDATE HERE!!!
 
