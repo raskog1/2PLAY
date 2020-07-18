@@ -26,12 +26,7 @@ $(document).ready(function () {
         },
         1500
       );
-      // .delay(1600, function loadnewPlaylist() {
-      //   if (newPlaylistContent) {
-      //     //load new.handlebar
-      //     console.log('hi');
-      //   }
-      // });
+
       animation.off('click');
     });
   }
