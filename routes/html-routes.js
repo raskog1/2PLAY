@@ -45,8 +45,10 @@ module.exports = function (app) {
   });
 
   // Dummy route to search page for testing
+
   app.get('/search', function (req, res) {
     res.sendFile(path.join(__dirname, '../public/search.html'));
+
   });
 
   // app.get("/main", (req, res) => {

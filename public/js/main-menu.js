@@ -1,9 +1,10 @@
+
 $(document).ready(function () {
   initClick();
+    function initClick() {
+        $('.mediaText').on('click', function() {
+            $('h2').fadeOut(600, function() {});
 
-  function initClick() {
-    $('.mediaText').on('click', function () {
-      $('h2').fadeOut(600, function () {});
 
       $('.mediaButton').delay(800).animate(
         {

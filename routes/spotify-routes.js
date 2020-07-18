@@ -3,19 +3,13 @@ const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
-module.exports = function(app) {
-  // var client_id = "ca01136d0cd04adeba8ef80783468c38"; // do not change Scott's login
-  // var client_secret = "0ef21ca6305648c48d6b4b4de4e5d438"; // do not change Scott's Login
+module.exports = function (app) {
+  const client_id = process.env.client_id; //Ryan's login
+  const client_secret = process.env.client_secret; //Ryan's Login
 
-  // const client_id = process.env.client_id; //Ryan's login
-  // const client_secret = process.env.client_secret; //Ryan's Login
+  var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
 
-  const client_id = "8dd2ab5f8ca342ad97d39fa1399be0c7";
-  const client_secret = "7df68654126f40a49111d8bf20d8dc1e";
-
-  var redirect_uri = "http://localhost:8080/rooms/"; // UPDATE HERE!!! to app login
-
-  var generateRandomString = function(length) {
+  var generateRandomString = function (length) {
     var text = "";
     var possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -30,7 +24,7 @@ module.exports = function(app) {
 
   app.use(cors()).use(cookieParser());
 
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
@@ -39,17 +33,18 @@ module.exports = function(app) {
 
     res.redirect(
       "https://accounts.spotify.com/authorize?" +
-        querystring.stringify({
-          response_type: "code",
-          client_id: client_id,
-          scope: scope,
-          redirect_uri: redirect_uri,
-          state: state,
-        })
+      querystring.stringify({
+        response_type: "code",
+        client_id: client_id,
+        scope: scope,
+        redirect_uri: redirect_uri,
+        state: state,
+      })
     );
+
   });
 
-  app.get("/callback", function(req, res) {
+  app.get("/callback", function (req, res) {
     // your application requests refresh and access tokens
     // after checking the state parameter
 
@@ -57,14 +52,15 @@ module.exports = function(app) {
     var state = req.query.state || null;
     var storedState = req.cookies ? req.cookies[stateKey] : null;
 
-    console.log("YO YO YO");
+
+    console.log(req.cookies);
 
     if (state === null || state !== storedState) {
       res.redirect(
         "/#" +
-          querystring.stringify({
-            error: "state_mismatch",
-          })
+        querystring.stringify({
+          error: "state_mismatch",
+        })
       );
     } else {
       res.clearCookie(stateKey);
@@ -83,46 +79,47 @@ module.exports = function(app) {
         json: true,
       };
 
-      request.post(authOptions, function(error, response, body) {
+      request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           var access_token = body.access_token,
             refresh_token = body.refresh_token;
           res.cookie("spotifyAccessToken", body.access_token);
-          console.log(access_token);
 
-          var options = {
-            url: "https://api.spotify.com/v1/me",
-            headers: { Authorization: "Bearer " + access_token },
-            json: true,
-          };
+          // var options = {
+          //   url: "https://api.spotify.com/v1/me",
+          //   headers: { Authorization: "Bearer " + access_token },
+          //   json: true,
+          // };
 
-          // use the access token to access the Spotify Web API
-          request.get(options, function(error, response, body) {
-            console.log(body);
-          });
+          // // use the access token to access the Spotify Web API
+          // request.get(options, function (error, response, body) {
+          //   console.log(body);
+          // });
 
-          // we can also pass the token to the browser to make requests from there
-          res.redirect(
-            "/#" +
-              querystring.stringify({
-                access_token: access_token,
-                refresh_token: refresh_token,
-              })
-          );
+          // // we can also pass the token to the browser to make requests from there
+          // res.redirect(
+          //   "/#" +
+          //   querystring.stringify({
+          //     access_token: access_token,
+          //     refresh_token: refresh_token,
+          //   })
+
+          // );
+          res.redirect("/rooms");
         } else {
           res.redirect(
             "/#" +
-              querystring.stringify({
-                error: "invalid_token",
-              })
+            querystring.stringify({
+              error: "invalid_token",
+            })
           );
         }
-        console.log(access_token);
       });
     }
+    // res.cookie(spotifyAccessToken, body.access_token);
   });
 
-  app.get("/refresh_token", function(req, res) {
+  app.get("/refresh_token", function (req, res) {
     // requesting access token from refresh token
     var refresh_token = req.query.refresh_token;
     var authOptions = {
@@ -139,7 +136,7 @@ module.exports = function(app) {
       json: true,
     };
 
-    request.post(authOptions, function(error, response, body) {
+    request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         var access_token = body.access_token;
         res.send({
@@ -148,4 +145,7 @@ module.exports = function(app) {
       }
     });
   });
+
+
+
 };
