@@ -1,12 +1,14 @@
-$(document).ready(function() {
+//required in new.handlebars, creates a new playlist
+
+$(document).ready(function () {
   // jQuery references for playlist pilot, copilot, and name
-  const pilotInput = $("#pilot");
-  const copilotInput = $("#copilot");
-  const playlistName = $("#playlist-name");
-  const formIDgoeshere = $("#whateverFormIDisCalled"); //UPDATE HERE!!!
+  const pilotInput = $('#pilot');
+  const copilotInput = $('#copilot');
+  const playlistName = $('#playlist-name');
+  const formIDgoeshere = $('#whateverFormIDisCalled'); //UPDATE HERE!!!
 
   // Submit event listener
-  $(formIDgoeshere).on("submit", startNewPlaylist); //UPDATE HERE!!!
+  $(formIDgoeshere).on('submit', startNewPlaylist); //UPDATE HERE!!!
 
   function startNewPlaylist(event) {
     event.preventDefault();
@@ -32,8 +34,8 @@ $(document).ready(function() {
 
   // Writes the playlist to the playlists table then redirects user
   function submitPlaylist(playlist) {
-    $.post("/api/playlists", playlist, () => {
-      window.location.href = "/endpointForNextPageHere"; //UPDATE HERE!!!
+    $.post('/api/playlists', playlist, () => {
+      window.location.href = '/endpointForNextPageHere'; //UPDATE HERE!!!
     });
   }
 });

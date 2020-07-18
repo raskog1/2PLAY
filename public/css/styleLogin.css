@@ -13,6 +13,12 @@ h2 {
     color: #ffe0ac;
 }
 
+.container {
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+}
+
 .signUpButton {
     background: #3498db;
     width: 180px;
@@ -49,7 +55,7 @@ button {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
-.center {
+.loginButton {
     width: 180px;
     height: 60px;
     position: relative;
