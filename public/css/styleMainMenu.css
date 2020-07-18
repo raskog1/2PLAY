@@ -1,26 +1,26 @@
 body {
-    background-color: #3f3e66;
+  background-color: #3f3e66;
 }
 
 .mediaButton {
-    width: 200px;
-    height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 .vertical-center {
-    margin-top: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+  margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
 }
 
 .options {
-    margin-top: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
 }
 
 h2 {
@@ -28,6 +28,7 @@ h2 {
     font-family: 'tw_cen_mt_stdbold';
     width: 200px;
     font-size: 29px;
+}
 
 header {
     background-color: #ffe0ac;

@@ -5,6 +5,7 @@ $(document).ready(function () {
         $('.mediaText').on('click', function() {
             $('h2').fadeOut(600, function() {});
 
+
       $('.mediaButton').delay(800).animate(
         {
           width: '50px',
@@ -25,11 +26,23 @@ $(document).ready(function () {
         },
         1500
       );
+      // .delay(1600, function loadnewPlaylist() {
+      //   if (newPlaylistContent) {
+      //     //load new.handlebar
+      //     console.log('hi');
+      //   }
+      // });
       animation.off('click');
     });
   }
   //event handlers for New Playlist, Edit Playlists, View Playlists
-  $('#mediaButton1').on('click', function () {});
-  $('#mediaButton2').on('click', function () {});
-  $('#mediaButton3').on('click', function () {});
+  var newPlaylistContent = $('#mediaButton1').on('click', function () {
+    return true;
+  });
+  var editPlaylistContent = $('#mediaButton2').on('click', function () {
+    return true;
+  });
+  var viewPlaylistContent = $('#mediaButton3').on('click', function () {
+    return true;
+  });
 });
