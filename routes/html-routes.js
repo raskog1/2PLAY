@@ -11,7 +11,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
   // landing route loads landing.html
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/landing.html"));
@@ -44,7 +44,7 @@ module.exports = function(app) {
   });
 
   // Dummy route to search page for testing
-  app.get("/search", function(req, res) {
+  app.get("/search", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/search.html"));
   });
 
