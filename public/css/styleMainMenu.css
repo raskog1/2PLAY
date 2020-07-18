@@ -35,7 +35,6 @@ header {
   padding: 0;
   border: 0;
   height: 100px;
-  z-index: -1;
 }
 
 .header img {
