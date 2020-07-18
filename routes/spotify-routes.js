@@ -4,14 +4,8 @@ const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
 module.exports = function (app) {
-  // var client_id = "ca01136d0cd04adeba8ef80783468c38"; // do not change Scott's login
-  // var client_secret = "0ef21ca6305648c48d6b4b4de4e5d438"; // do not change Scott's Login
-
-  // const client_id = process.env.client_id; //Ryan's login
-  // const client_secret = process.env.client_secret; //Ryan's Login
-
-  const client_id = "8dd2ab5f8ca342ad97d39fa1399be0c7";
-  const client_secret = "7df68654126f40a49111d8bf20d8dc1e";
+  const client_id = process.env.client_id; //Ryan's login
+  const client_secret = process.env.client_secret; //Ryan's Login
 
   var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
 
