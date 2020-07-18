@@ -1,12 +1,14 @@
-$(document).ready(function() {
-  $(formIDgoeshere).on("submit", viewComplete); //UPDATE HERE!!!
-  $(formIDgoeshere).on("submit", viewIncomplete); //UPDATE HERE!!!
+//need for complete.handlebars and existing.handlebars
+
+$(document).ready(function () {
+  $(formIDgoeshere).on('submit', viewComplete); //UPDATE HERE!!!
+  $(formIDgoeshere).on('submit', viewIncomplete); //UPDATE HERE!!!
 
   // View all completed playlists
   function viewComplete(event) {
     event.preventDefault();
 
-    $.get("/api/playlists/complete", (completePlaylists) => {
+    $.get('/api/playlists/complete', (completePlaylists) => {
       for (let i = 0; i < completePlaylists.length; i++) {
         console.log(completePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
@@ -17,7 +19,7 @@ $(document).ready(function() {
   function viewIncomplete(event) {
     event.preventDefault();
 
-    $.get("/api/playlists/incomplete", (incompletePlaylists) => {
+    $.get('/api/playlists/incomplete', (incompletePlaylists) => {
       for (let i = 0; i < incompletePlaylists.length; i++) {
         console.log(incompletePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
@@ -28,8 +30,8 @@ $(document).ready(function() {
   function viewOneIncomplete(event) {
     event.preventDefault();
 
-    const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
-    window.location.href = "/endpointForNextPageHere"; //UPDATE HERE!!!
+    const id = $('#whateverIDassociatedWithButton'); //UPDATE HERE!!!
+    window.location.href = '/endpointForNextPageHere'; //UPDATE HERE!!!
 
     // After redirect, HTML elements need to be populated based on results
     // Pilot pending rating, copilot pending rating
@@ -46,7 +48,7 @@ $(document).ready(function() {
   function deleteOne(event) {
     event.preventDefault();
 
-    const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
+    const id = $('#whateverIDassociatedWithButton'); //UPDATE HERE!!!
     $.delete(`/api/playlists/${id}`, (deletedPlaylist) => {
       console.log(`${deletedPlaylist.name} was deleted.`);
     });
