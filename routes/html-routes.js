@@ -57,11 +57,11 @@ module.exports = function(app) {
   });
 
   app.get("/incomplete", function(req, res) {
-    res.render("complete?status=incomplete");
+    res.render("complete");
   });
 
   app.get("/complete", function(req, res) {
-    res.render("complete?status=complete");
+    res.render("complete");
   });
 
   app.get("/main", function(req, res) {

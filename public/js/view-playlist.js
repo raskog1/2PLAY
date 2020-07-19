@@ -7,12 +7,21 @@ $(document).ready(function() {
     marginTop: "-=530px",
   });
 
-  // $(formIDgoeshere).on('submit', viewComplete); //UPDATE HERE!!!
-  // $(formIDgoeshere).on('submit', viewIncomplete); //UPDATE HERE!!!
+  const path = window.location.pathname;
 
-  $.get("/api/user_data", (response) => {
-    viewIncomplete(response.id);
-  });
+  getStatus();
+
+  function getStatus() {
+    if (path === "/complete") {
+      $.get("/api/user_data", (response) => {
+        viewComplete(response.id);
+      });
+    } else if (path === "/incomplete") {
+      $.get("/api/user_data", (response) => {
+        viewIncomplete(response.id);
+      });
+    }
+  }
 
   $("body").on("click", ".playlistItem", function() {
     const id = $(this).data("id");
@@ -21,8 +30,15 @@ $(document).ready(function() {
 
   // View all completed playlists
   function viewComplete(id) {
-    $.get("/api/playlists/complete", (completePlaylists) => {
+    $.get("/api/playlists/complete/" + id, (completePlaylists) => {
       for (let i = 0; i < completePlaylists.length; i++) {
+        const listItem = $("<button>")
+          .attr("data-id", completePlaylists[i].id)
+          .addClass("playlistItem")
+          .text(completePlaylists[i].name)
+          .appendTo(".playlistList");
+
+        $("</br>").appendTo(".playlistList");
         console.log(completePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
     });
