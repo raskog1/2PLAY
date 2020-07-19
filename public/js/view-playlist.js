@@ -7,28 +7,62 @@ $(document).ready(function() {
     marginTop: "-=530px",
   });
 
-  // $(formIDgoeshere).on('submit', viewComplete); //UPDATE HERE!!!
-  // $(formIDgoeshere).on('submit', viewIncomplete); //UPDATE HERE!!!
+  const path = window.location.pathname;
+
+  getStatus();
+
+  function getStatus() {
+    if (path === "/complete") {
+      $.get("/api/user_data", (response) => {
+        viewComplete(response.id);
+      });
+    } else if (path === "/incomplete") {
+      $.get("/api/user_data", (response) => {
+        viewIncomplete(response.id);
+      });
+    }
+  }
+
+  $("body").on("click", ".playlistItem", function() {
+    const id = $(this).data("id");
+    window.location.href = "/existing?playlist_id=" + id;
+  });
 
   // View all completed playlists
-  function viewComplete(event) {
-    event.preventDefault();
-
-    $.get("/api/playlists/complete", (completePlaylists) => {
+  function viewComplete(id) {
+    $.get("/api/playlists/complete/" + id, (completePlaylists) => {
       for (let i = 0; i < completePlaylists.length; i++) {
+        const listItem = $("<button>")
+          .attr("data-id", completePlaylists[i].id)
+          .addClass("playlistItem")
+          .text(completePlaylists[i].name)
+          .appendTo(".playlistList");
+
+        $("</br>").appendTo(".playlistList");
         console.log(completePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
     });
   }
 
   // View all incomplete playlists
-  function viewIncomplete(event) {
-    event.preventDefault();
-
-    $.get("/api/playlists/incomplete", (incompletePlaylists) => {
+  function viewIncomplete(id) {
+    $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
       for (let i = 0; i < incompletePlaylists.length; i++) {
+        const listItem = $("<button>")
+          .attr("data-id", incompletePlaylists[i].id)
+          .addClass("playlistItem")
+          .text(incompletePlaylists[i].name)
+          .appendTo(".playlistList");
+
+        $("</br>").appendTo(".playlistList");
         console.log(incompletePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
+    });
+  }
+
+  function viewUserPlaylists(id) {
+    $.get("/api/playlists/" + id, (userPlaylists) => {
+      console.log(userPlaylists);
     });
   }
 
@@ -37,7 +71,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
-    window.location.href = "/endpointForNextPageHere"; //UPDATE HERE!!!
+    window.location.href = "/existing?playlist_id=" + id;
 
     // After redirect, HTML elements need to be populated based on results
     // Pilot pending rating, copilot pending rating
