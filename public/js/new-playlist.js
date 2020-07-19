@@ -1,22 +1,20 @@
 //required in new.handlebars, creates a new playlist
 
-$(document).ready(function () {
-  $('.mediaButton').css({
-    width: '50px',
-    height: '50px',
-    marginTop: '-=530px',
+$(document).ready(function() {
+  $(".mediaButton").css({
+    width: "50px",
+    height: "50px",
+    marginTop: "-=530px",
   });
-  // jQuery references for playlist pilot, copilot, and name
-  const pilotInput = $('#pilot');
-  const copilotInput = $('#copilot');
-  const playlistName = $('#playlist-name');
-  const formIDgoeshere = $('#whateverFormIDisCalled'); //UPDATE HERE!!!
 
   // Submit event listener
-  $(formIDgoeshere).on('submit', startNewPlaylist); //UPDATE HERE!!!
-
-  function startNewPlaylist(event) {
+  $("#create").on("click", function(event) {
     event.preventDefault();
+
+    // jQuery references for playlist pilot, copilot, and name
+    const pilotInput = $("#pilotName");
+    const copilotInput = $("#coPilotName");
+    const playlistName = $("#playListName");
 
     // If any fields are left blank, it won't submit
     if (
@@ -27,20 +25,20 @@ $(document).ready(function () {
       return;
     }
 
-    // Constructing the information needed to create a new playlist row
-    const newPlaylist = {
+    const playlistDetails = {
       name: playlistName.val().trim(),
       pilot: pilotInput.val().trim(),
       copilot: copilotInput.val().trim(),
     };
 
-    submitPlaylist(newPlaylist);
-  }
+    submitPlaylist(playlistDetails);
+  });
 
   // Writes the playlist to the playlists table then redirects user
   function submitPlaylist(playlist) {
-    $.post('/api/playlists', playlist, () => {
-      window.location.href = '/endpointForNextPageHere'; //UPDATE HERE!!!
-    });
+    $.post("/api/playlists", playlist).then(
+      // redirect("/existing")
+      (window.location.href = "/existing")
+    );
   }
 });
