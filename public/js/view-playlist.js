@@ -14,6 +14,11 @@ $(document).ready(function() {
     viewIncomplete(response.id);
   });
 
+  $("body").on("click", ".playlistItem", function() {
+    const id = $(this).data("id");
+    window.location.href = "/existing?playlist_id=" + id;
+  });
+
   // View all completed playlists
   function viewComplete(id) {
     $.get("/api/playlists/complete", (completePlaylists) => {
@@ -28,7 +33,8 @@ $(document).ready(function() {
     $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
       for (let i = 0; i < incompletePlaylists.length; i++) {
         const listItem = $("<button>")
-          .attr("id", incompletePlaylists[i].id)
+          .attr("data-id", incompletePlaylists[i].id)
+          .addClass("playlistItem")
           .text(incompletePlaylists[i].name)
           .appendTo(".playlistList");
 
