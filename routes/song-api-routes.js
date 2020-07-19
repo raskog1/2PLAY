@@ -10,9 +10,10 @@ module.exports = function(app) {
   });
 
   // Get all tracks missing pilot ratings
-  app.get("/api/songs/pilot", (req, res) => {
+  app.get("/api/songs/pilot/:id", (req, res) => {
     db.Song.findAll({
       where: {
+        PlaylistId: req.params.id,
         pilot_rating: {
           [Op.is]: null,
         },
@@ -23,9 +24,10 @@ module.exports = function(app) {
   });
 
   // Get all tracks missing copilot ratings
-  app.get("/api/songs/copilot", (req, res) => {
+  app.get("/api/songs/copilot/:id", (req, res) => {
     db.Song.findAll({
       where: {
+        PlaylistId: req.params.id,
         copilot_rating: {
           [Op.is]: null,
         },

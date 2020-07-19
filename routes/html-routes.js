@@ -56,8 +56,12 @@ module.exports = function(app) {
     res.render("existing");
   });
 
+  app.get("/incomplete", function(req, res) {
+    res.render("complete?status=incomplete");
+  });
+
   app.get("/complete", function(req, res) {
-    res.render("complete");
+    res.render("complete?status=complete");
   });
 
   app.get("/main", function(req, res) {
