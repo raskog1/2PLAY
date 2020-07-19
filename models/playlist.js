@@ -35,5 +35,13 @@ module.exports = function(sequelize, DataTypes) {
       onDelete: "CASCADE",
     });
   };
+
+  Playlist.associate = function(models) {
+    Playlist.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false,
+      },
+    });
+  };
   return Playlist;
 };

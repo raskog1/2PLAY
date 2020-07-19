@@ -8,7 +8,7 @@ $(document).ready(function() {
   });
 
   // Submit event listener
-  $("#create").on("click", function(event) {
+  $("body").on("click", "#create", function(event) {
     event.preventDefault();
 
     // jQuery references for playlist pilot, copilot, and name
@@ -25,20 +25,24 @@ $(document).ready(function() {
       return;
     }
 
-    const playlistDetails = {
-      name: playlistName.val().trim(),
-      pilot: pilotInput.val().trim(),
-      copilot: copilotInput.val().trim(),
-    };
+    // Obtain the user ID of the current user
+    $.get("/api/user_data", (response) => {
+      const playlistDetails = {
+        name: playlistName.val().trim(),
+        pilot: pilotInput.val().trim(),
+        copilot: copilotInput.val().trim(),
+        UserId: response.id,
+      };
 
-    submitPlaylist(playlistDetails);
+      submitPlaylist(playlistDetails);
+    });
+
+    // Writes the playlist to the playlists table then redirects user
+    // Stores playlist id in url for future use
+    function submitPlaylist(playlist) {
+      $.post("/api/playlists", playlist).then(function(result) {
+        window.location.href = "/existing?playlist_id=" + result.id;
+      });
+    }
   });
-
-  // Writes the playlist to the playlists table then redirects user
-  function submitPlaylist(playlist) {
-    $.post("/api/playlists", playlist).then(
-      // redirect("/existing")
-      (window.location.href = "/existing")
-    );
-  }
 });

@@ -3,8 +3,6 @@ $(document).ready(() => {
     event.preventDefault();
 
     //Search function, required for main handlebars
-    // Clears results div each time a search is executed
-    $("#results-div").html("");
 
     // Gets the input values from our search page
     const track = $("#songSearchInput")
@@ -19,6 +17,9 @@ $(document).ready(() => {
 
   // This searches based on title, or title/artist
   function searchHandle(trackTitle, artistName) {
+    // Clears results div each time a search is executed
+    $(".results").html("");
+
     const baseURL = "http://localhost:8080";
     const queryURL = `${baseURL}/api/search/${trackTitle}/${artistName}`;
 
@@ -27,7 +28,6 @@ $(document).ready(() => {
       url: queryURL,
       method: "GET",
     }).then((response) => {
-      console.log(response);
       const limit =
         // If less than five search results, takes the length of the response
         response.tracks.items.length < 5 ? response.tracks.items.length : 5;
@@ -65,6 +65,9 @@ $(document).ready(() => {
 
         $("</br>").appendTo(".results");
       }
+      // Clear input fields for next search
+      $("#songSearchInput").val("");
+      $("#artistSearchInput").val("");
     });
   }
 });

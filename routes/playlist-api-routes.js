@@ -1,10 +1,11 @@
 const db = require("../models");
 
 module.exports = function(app) {
-  // Get all playslists that are flagged as completed
-  app.get("/api/playlists/complete", (req, res) => {
+  // Get all complete playlists from a given user id
+  app.get("/api/playlists/complete/:id", (req, res) => {
     db.Playlist.findAll({
       where: {
+        UserId: req.params.id,
         completed: true,
       },
     }).then(function(completePlaylists) {
@@ -12,10 +13,11 @@ module.exports = function(app) {
     });
   });
 
-  // Get all incomplete playlists
-  app.get("/api/playlists/incomplete", (req, res) => {
+  // Get all incomplete playlists from a given user id
+  app.get("/api/playlists/incomplete/:id", (req, res) => {
     db.Playlist.findAll({
       where: {
+        UserId: req.params.id,
         completed: false,
       },
     }).then(function(incompletePlaylists) {
@@ -23,8 +25,19 @@ module.exports = function(app) {
     });
   });
 
-  // Get a single playlist (complete or incomplete)
+  // Get all playlists from a given user id
   app.get("/api/playlists/:id", (req, res) => {
+    db.Playlist.findAll({
+      where: {
+        UserId: req.params.id,
+      },
+    }).then(function(userPlaylists) {
+      res.json(userPlaylists);
+    });
+  });
+
+  // Get a single playlist (complete or incomplete) given a playlist id
+  app.get("/api/playlist/:id", (req, res) => {
     db.Playlist.findOne({
       where: {
         id: req.params.id,
@@ -36,7 +49,7 @@ module.exports = function(app) {
 
   // Create a new, empty playlist
   app.post("/api/playlists", (req, res) => {
-    db.Playlist.create(req.body).then(function(newPlayist) {
+    db.Playlist.create(req.body).then(function(newPlaylist) {
       res.json(newPlaylist);
     });
   });
