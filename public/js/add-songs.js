@@ -2,6 +2,11 @@ $(document).ready(() => {
   getPilotUnrated();
   // getCopilotUnrated();
 
+  let url = window.location.search;
+  let currentPlaylist;
+
+  getPlaylistID();
+
   $("body").on("click", ".suggest", function(event) {
     event.preventDefault();
 
@@ -12,9 +17,15 @@ $(document).ready(() => {
       title: title,
       artist: artist,
       trackId: id,
+      PlaylistId: currentPlaylist,
     };
 
     addSong(songData);
+
+    // Clears the results div and search inputs after suggesting a song
+    $(".results").html("");
+    $("#songSearchInput").val("");
+    $("#artistSearchInput").val("");
   });
 
   function addSong(songData) {
@@ -23,9 +34,19 @@ $(document).ready(() => {
     );
   }
 
+  function getPlaylistID() {
+    if (url.indexOf("?playlist_id=") !== -1) {
+      currentPlaylist = url.split("=")[1];
+    }
+
+    console.log(currentPlaylist);
+    //   $.get("/api/playlist_data", (response) => {
+    //     console.log(response.name);
+  }
+
   function getPilotUnrated() {
     $.get("/api/songs/pilot", function(unrated) {
-      console.log(unrated);
+      //console.log(unrated);
     });
   }
 

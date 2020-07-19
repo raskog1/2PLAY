@@ -10,10 +10,12 @@ $(document).ready(function() {
   // $(formIDgoeshere).on('submit', viewComplete); //UPDATE HERE!!!
   // $(formIDgoeshere).on('submit', viewIncomplete); //UPDATE HERE!!!
 
-  // View all completed playlists
-  function viewComplete(event) {
-    event.preventDefault();
+  $.get("/api/user_data", (response) => {
+    viewIncomplete(response.id);
+  });
 
+  // View all completed playlists
+  function viewComplete(id) {
     $.get("/api/playlists/complete", (completePlaylists) => {
       for (let i = 0; i < completePlaylists.length; i++) {
         console.log(completePlaylists[i].name);
@@ -22,13 +24,23 @@ $(document).ready(function() {
   }
 
   // View all incomplete playlists
-  function viewIncomplete(event) {
-    event.preventDefault();
-
-    $.get("/api/playlists/incomplete", (incompletePlaylists) => {
+  function viewIncomplete(id) {
+    $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
       for (let i = 0; i < incompletePlaylists.length; i++) {
+        const listItem = $("<button>")
+          .attr("id", incompletePlaylists[i].id)
+          .text(incompletePlaylists[i].name)
+          .appendTo(".playlistList");
+
+        $("</br>").appendTo(".playlistList");
         console.log(incompletePlaylists[i].name);
       } // Insert code to generate button/list in HTML file
+    });
+  }
+
+  function viewUserPlaylists(id) {
+    $.get("/api/playlists/" + id, (userPlaylists) => {
+      console.log(userPlaylists);
     });
   }
 
@@ -37,7 +49,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
-    window.location.href = "/endpointForNextPageHere"; //UPDATE HERE!!!
+    window.location.href = "/existing?playlist_id=" + id;
 
     // After redirect, HTML elements need to be populated based on results
     // Pilot pending rating, copilot pending rating
