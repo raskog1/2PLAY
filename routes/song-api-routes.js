@@ -3,8 +3,12 @@ const { Op } = require("sequelize");
 
 module.exports = function(app) {
   // Get all tracks in songs database
-  app.get("/api/songs", (req, res) => {
-    db.Song.findAll({}).then(function(allSongs) {
+  app.get("/api/songs/:id", (req, res) => {
+    db.Song.findAll({
+      where: {
+        PlaylistId: req.params.id,
+      },
+    }).then(function(allSongs) {
       res.json(allSongs);
     });
   });
@@ -18,6 +22,7 @@ module.exports = function(app) {
           [Op.is]: null,
         },
       },
+      include: [db.Playlist],
     }).then(function(unratedSongs) {
       res.json(unratedSongs);
     });
@@ -32,6 +37,7 @@ module.exports = function(app) {
           [Op.is]: null,
         },
       },
+      include: [db.Playlist],
     }).then(function(unratedSongs) {
       res.json(unratedSongs);
     });

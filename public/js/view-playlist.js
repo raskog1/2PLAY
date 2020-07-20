@@ -25,6 +25,7 @@ $(document).ready(function() {
 
   $("body").on("click", ".playlistItem", function() {
     const id = $(this).data("id");
+    // listSongs(id);
     window.location.href = "/existing?playlist_id=" + id;
   });
 
@@ -59,6 +60,18 @@ $(document).ready(function() {
       } // Insert code to generate button/list in HTML file
     });
   }
+
+  // function listSongs(id) {
+  //   $.get("/api/songs/" + id, (songList) => {
+  //     for (let i = 0; i < songList.length; i++) {
+  //       // const listSong = $("<li>")
+  //       //   .text(songList[i].title)
+  //       //   .appendTo(//button identifier);
+  //       // Can we make a dropdown here?
+  //     }
+  //     console.log(songList);
+  //   });
+  // }
 
   function viewUserPlaylists(id) {
     $.get("/api/playlists/" + id, (userPlaylists) => {
