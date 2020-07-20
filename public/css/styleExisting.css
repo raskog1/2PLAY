@@ -129,6 +129,7 @@ li {
     z-index: 11;
     float: left;
     margin-top: -200px;
+    max-width: 430px;
 }
 
 .rateButton {
