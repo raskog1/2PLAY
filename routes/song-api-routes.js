@@ -18,6 +18,7 @@ module.exports = function(app) {
           [Op.is]: null,
         },
       },
+      include: [db.Playlist],
     }).then(function(unratedSongs) {
       res.json(unratedSongs);
     });
@@ -32,6 +33,7 @@ module.exports = function(app) {
           [Op.is]: null,
         },
       },
+      include: [db.Playlist],
     }).then(function(unratedSongs) {
       res.json(unratedSongs);
     });
@@ -46,18 +48,11 @@ module.exports = function(app) {
 
   // Update ratings for an existing song in the songs table
   app.put("/api/songs", (req, res) => {
-    db.Song.update(
-      {
-        pilot_rating: req.body.pilot_rating,
-        copilot_rating: req.body.copilot_rating,
-        avg_rating: (pilot_rating + copilot_rating) / 2,
+    db.Song.update(req.body, {
+      where: {
+        id: req.body.id,
       },
-      {
-        where: {
-          id: req.body.id,
-        },
-      }
-    ).then(function(updatedSong) {
+    }).then(function(updatedSong) {
       res.json(updatedSong);
     });
   });
