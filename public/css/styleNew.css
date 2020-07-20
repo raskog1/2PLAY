@@ -115,3 +115,9 @@ svg {
 .searchButtonContainer {
     margin-top: 50px;
 }
+
+label,
+p,
+h2 {
+    color: #ffe0ac;
+}
