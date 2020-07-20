@@ -2,24 +2,27 @@ body {
     background-color: #3f3e66;
 }
 
-.container {
-    background-color: #3f3e66;
-    display: flex;
-    flex-direction: row;
-}
-
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
 .column {
     display: flex;
     flex-direction: column;
-    flex-basis: 100%;
     flex: 1;
+}
+
+.col {
+    flex-basis: 1;
+    flex-grow: 1;
+}
+
+.Box1 {
+    max-width: 300px;
+}
+
+.imageTwo {
+    display: flex;
+}
+
+.row {
+    padding-left: 195px;
 }
 
 .gif {
@@ -33,6 +36,8 @@ body {
     margin-top: 55px;
     margin-left: 45px;
     position: relative;
+    z-index: -1;
+    display: inline-block;
 }
 
 .fa-play-circle {
@@ -48,9 +53,6 @@ body {
 } */
 
 .video-play-button {
-    /* margin-top: 80px;
-    margin-left: 20px; */
-    align-self: center;
     z-index: 10;
     transform: translateX(-50%) translateY(-50%);
     box-sizing: content-box;
@@ -64,7 +66,7 @@ body {
 .video-play-button:before {
     content: '';
     position: absolute;
-    z-index: 0;
+    z-index: 10;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);

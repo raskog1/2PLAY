@@ -108,10 +108,47 @@ svg {
 }
 
 .formContainer {
-    z-index: 10;
-    margin-top: -170px;
+    z-index: 11;
+    margin-right: 150px;
+    margin-top: -200px;
 }
 
 .searchButtonContainer {
     margin-top: 50px;
+}
+
+label,
+p,
+h2,
+h4,
+li {
+    color: #ffe0ac;
+}
+
+.songsToRate {
+    z-index: 11;
+    float: left;
+    margin-top: -200px;
+}
+
+.rateButton {
+    margin-top: -70px;
+    margin-left: 10px;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.results {
+    z-index: 10;
+    text-align: center;
+    justify-content: center;
+    margin-top: -200px;
+}
+
+.suggestedSongs {
+    z-index: 15;
+    float: none;
+    margin-top: -200px;
 }
