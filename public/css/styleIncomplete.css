@@ -109,9 +109,43 @@ svg {
 
 .formContainer {
     z-index: 10;
-    margin-top: -170px;
+    margin-right: 200px;
+    margin-top: -200px;
 }
 
 .searchButtonContainer {
     margin-top: 50px;
+}
+
+label,
+p,
+h2,
+h4,
+li {
+    color: #ffe0ac;
+}
+
+.songsToRate {
+    z-index: 11;
+    float: left;
+    margin-top: -200px;
+}
+
+.rateButton {
+    margin-top: -70px;
+    margin-left: 10px;
+    width: 90px;
+    height: 30px;
+    text-align: center;
+}
+
+.editPlaylistButton {
+    width: 90px;
+    height: 30px;
+    margin-left: 60px;
+    text-align: center;
+}
+
+.incompleteDiv {
+    margin-top: -200px;
 }

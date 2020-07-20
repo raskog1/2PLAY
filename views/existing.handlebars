@@ -29,12 +29,8 @@
 </div>
 
 
-
-
-
-
 <!-- Added from Anthony's slack FOR TESTING ONLY-->
-
+<div class="container songsToRate">
 <div class="pilot">
   <h4>Songs that Pilot Needs to Rate</h4>
 </div>
@@ -42,11 +38,17 @@
 <div class="coPilot">
   <h4>Songs that CoPilot Needs to Rate</h4>
 </div>
+</div>
+<div class="container verticle-center suggestedSongs">
+          <div class="results">
+            <!--Put the info for whatever button clicked here(new playlist, unfinished playlists, completed playlists)-->
+          </div>
+  </div>
 
 <aside style="float: right;">
-  <div class="container">
+  <div class="container formContainer">
     <div class="row">
-      <div class="container vertical-center">
+      <div class="container">
         <form class="login">
           <div class="form-group">
             <label for="songSearchInput">Song Name</label>
@@ -56,7 +58,7 @@
             <label for="artistSearchInput">Artist Name</label>
             <input type="text" class="form-control" id="artistSearchInput" placeholder="Artist" />
           </div>
-          <div class="container vertical-center">
+          <div class="container vertical-center searchButtonContainer">
             <button id="search" type="submit" class="btn loginButton">
               <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
                 <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
@@ -65,24 +67,13 @@
               <span>Search</span>
             </button>
           </div>
-          <div class="container results">
-            <!--Put the info for whatever button clicked here(new playlist, unfinished playlists, completed playlists)-->
-          </div>
         </form>
       </div>
     </div>
   </div>
 </aside>
 
-
-
 <!-- Added from Anthony's slack FOR TESTING ONLY -->
-
-
-
-
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
