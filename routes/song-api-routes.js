@@ -2,9 +2,16 @@ const db = require("../models");
 const { Op } = require("sequelize");
 
 module.exports = function(app) {
-  // Get all tracks in songs database
+  // Get all tracks in songs database sorted by avg_rating
   app.get("/api/songs", (req, res) => {
-    db.Song.findAll({}).then(function(allSongs) {
+    db.Song.findAll({
+      where: {
+        avg_rating: {
+          [Op.gt]: 3.0,
+        },
+      },
+      order: [["avg_rating", "DESC"]],
+    }).then(function(allSongs) {
       res.json(allSongs);
     });
   });
@@ -36,6 +43,39 @@ module.exports = function(app) {
       include: [db.Playlist],
     }).then(function(unratedSongs) {
       res.json(unratedSongs);
+    });
+  });
+
+  // Get all tracks with both pilot/copilot ratings
+  app.get("/api/songs/rated", (req, res) => {
+    db.Song.findAll({
+      where: {
+        avg_rating: {
+          [Op.is]: null,
+        },
+        copilot_rating: {
+          [Op.is]: !null,
+        },
+        pilot_rating: {
+          [Op.is]: !null,
+        },
+      },
+    }).then(function(fullRated) {
+      res.json(fullRated);
+    });
+  });
+
+  // Get all tracks with avg_rating above 3.1
+  app.get("/api/songs/passing/:id", (req, res) => {
+    db.Song.findAll({
+      where: {
+        PlaylistId: req.params.id,
+        avg_rating: {
+          [Op.gt]: 3.0,
+        },
+      },
+    }).then(function(passingSongs) {
+      res.json(passingSongs);
     });
   });
 

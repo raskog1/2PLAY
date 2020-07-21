@@ -45,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
       default: null,
       validate: {
         max: 5,
-        min: 1,
+        min: 0,
       },
     },
   });

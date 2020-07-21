@@ -44,25 +44,28 @@ $(document).ready(() => {
   function getPilotUnrated(id) {
     // Create a header using the pilot's input
     $.get("/api/songs/pilot/" + id, (unrated) => {
-      console.log(unrated);
-      const header = $("<h4>")
-        .text(`Songs that ${unrated[0].Playlist.pilot} needs to rate:`)
-        .appendTo(".pilot");
+      if (unrated.length > 0) {
+        const header = $("<h4>")
+          .text(`Songs that ${unrated[0].Playlist.pilot} needs to rate:`)
+          .appendTo(".pilot");
 
-      // Generate the list of songs awaiting pilot ratings
-      populate(unrated, ".pilot", "pilots");
+        // Generate the list of songs awaiting pilot ratings
+        populate(unrated, ".pilot", "pilots");
+      }
     });
   }
 
   function getCopilotUnrated(id) {
     // Create a header using the copilot's input
     $.get("/api/songs/copilot/" + id, (unrated) => {
-      const header = $("<h4>")
-        .text(`Songs that ${unrated[0].Playlist.copilot} needs to rate:`)
-        .appendTo(".coPilot");
+      if (unrated.length > 0) {
+        const header = $("<h4>")
+          .text(`Songs that ${unrated[0].Playlist.copilot} needs to rate:`)
+          .appendTo(".coPilot");
 
-      // Generate the list of songs awaiting copilot ratings
-      populate(unrated, ".coPilot", "copilots");
+        // Generate the list of songs awaiting copilot ratings
+        populate(unrated, ".coPilot", "copilots");
+      }
     });
   }
 
