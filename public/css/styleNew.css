@@ -110,6 +110,7 @@ svg {
 .formContainer {
     z-index: 10;
     margin-top: -170px;
+    text-align: center;
 }
 
 .searchButtonContainer {
@@ -120,4 +121,22 @@ label,
 p,
 h2 {
     color: #ffe0ac;
+}
+
+.form-group {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.newPlaylist {
+    text-align: center;
+}
+
+.form-control {
+    margin: 10px;
+}
+
+label {
+    font-size: 20px;
+    font-family: 'tw_cen_mt_stdbold';
 }

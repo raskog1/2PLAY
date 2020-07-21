@@ -2,10 +2,11 @@ const db = require("../models");
 const { Op } = require("sequelize");
 
 module.exports = function(app) {
-  // Get all tracks in songs database sorted by avg_rating
-  app.get("/api/songs", (req, res) => {
+  // // Get all tracks in songs database sorted by avg_rating
+  app.get("/api/songs/:id", (req, res) => {
     db.Song.findAll({
       where: {
+        PlaylistId: req.params.id,
         avg_rating: {
           [Op.gt]: 3.0,
         },
@@ -79,6 +80,23 @@ module.exports = function(app) {
     });
   });
 
+  // Get all tracks with avg_rating below 3.1
+  app.get("/api/songs/failed/:id", (req, res) => {
+    db.Song.findAll({
+      where: {
+        PlaylistId: req.params.id,
+        avg_rating: {
+          [Op.or]: {
+            [Op.lt]: 3.1,
+            [Op.is]: null,
+          },
+        },
+      },
+    }).then(function(failedSongs) {
+      res.json(failedSongs);
+    });
+  });
+
   // Post a new song to the songs table (without ratings)
   app.post("/api/songs", (req, res) => {
     db.Song.create(req.body).then(function(newSong) {
@@ -94,6 +112,17 @@ module.exports = function(app) {
       },
     }).then(function(updatedSong) {
       res.json(updatedSong);
+    });
+  });
+
+  // Delete song from database at ID
+  app.delete("/api/songs/:id", (req, res) => {
+    db.Song.destroy({
+      where: {
+        id: req.params.id,
+      },
+    }).then(function(deletedSong) {
+      res.json(deletedSong);
     });
   });
 };

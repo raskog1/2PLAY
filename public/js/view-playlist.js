@@ -1,5 +1,4 @@
 //need for complete.handlebars and existing.handlebars
-
 $(document).ready(function() {
     $(".mediaButton").css({
         width: "50px",
