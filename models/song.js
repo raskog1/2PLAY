@@ -25,23 +25,23 @@ module.exports = function(sequelize, DataTypes) {
       },
     },
     pilot_rating: {
-      type: DataTypes.INTEGER(1),
+      type: DataTypes.INTEGER(2, 1),
       default: null,
       validate: {
         max: 5,
-        min: 1,
+        min: 0,
       },
     },
     copilot_rating: {
-      type: DataTypes.INTEGER(1),
+      type: DataTypes.INTEGER(2, 1),
       default: null,
       validate: {
         max: 5,
-        min: 1,
+        min: 0,
       },
     },
     avg_rating: {
-      type: DataTypes.DECIMAL(2, 1),
+      type: DataTypes.DECIMAL(3, 2),
       default: null,
       validate: {
         max: 5,
