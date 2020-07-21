@@ -1,16 +1,12 @@
 $(document).ready(() => {
-  let url = window.location.search;
-  let currentPlaylist;
-
-  getPlaylistID();
-
-  getPilotUnrated(currentPlaylist);
-  getCopilotUnrated(currentPlaylist);
+  getPilotUnrated(getPlaylistID());
+  getCopilotUnrated(getPlaylistID());
 
   // Event listener for when a user suggests a song for the playlist
   $("body").on("click", ".suggest", function(event) {
     event.preventDefault();
 
+    // Compile relevant data to be put into database
     const title = $(this).data("title");
     const artist = $(this).data("artist");
     const id = $(this).data("id");
@@ -18,7 +14,7 @@ $(document).ready(() => {
       title: title,
       artist: artist,
       trackId: id,
-      PlaylistId: currentPlaylist,
+      PlaylistId: getPlaylistID(),
     };
 
     addSong(songData);
@@ -36,8 +32,10 @@ $(document).ready(() => {
 
   // Grab the playlist ID from the URL
   function getPlaylistID() {
+    const url = window.location.search;
     if (url.indexOf("?playlist_id=") !== -1) {
-      currentPlaylist = url.split("=")[1];
+      let currentPlaylist = url.split("=")[1];
+      return currentPlaylist;
     }
   }
 
@@ -83,9 +81,9 @@ $(document).ready(() => {
       // Creating a div to house the iframe and button
       const songDiv = $("<div>")
         .attr("id", `${divName}${i}`)
-        .attr("data-id", id)
-        .attr("data-title", title)
-        .attr("data-artist", artist)
+        // .attr("data-id", id)
+        // .attr("data-title", title)
+        // .attr("data-artist", artist)
         .appendTo(location);
 
       // Dynamically creating the iframes for playback of results
@@ -107,7 +105,7 @@ $(document).ready(() => {
 
       const stars = $("<div>")
         .addClass("rating-star")
-        .addClass(`${id}`)
+        // .addClass(`${id}`)
         .appendTo(`#${divName}${i}`);
 
       $("</br>").appendTo(location);
@@ -120,7 +118,7 @@ $(document).ready(() => {
         full: "images/star-full-gold.png",
         half: "images/star-half-gold.png",
       },
-      valuesStar: [[1], [2], [3], [4], [5]],
+      valuesStar: [[0.5, 1], [1.5, 2], [2.5, 3], [3.5, 4], [4.5, 5]],
       nameInput: "rating",
       responsive: true,
       showSelectedValue: false,
