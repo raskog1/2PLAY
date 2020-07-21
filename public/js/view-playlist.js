@@ -1,144 +1,110 @@
 //need for complete.handlebars and existing.handlebars
 $(document).ready(function() {
-  $(".mediaButton").css({
-    width: "50px",
-    height: "50px",
-    marginTop: "-=530px",
-  });
-
-  const path = window.location.pathname;
-  const trackLimit = 12;
-
-  getStatus();
-
-  // Event listener for Playlist Generator button
-  $("#generateComplete").on("click", function(event) {
-    event.preventDefault();
-    generatePlaylist();
-  });
-
-  // Event listener for selecting a playlist to work on
-  $("body").on("click", ".playlistItem", function() {
-    const id = $(this).data("id");
-    window.location.href = "/existing?playlist_id=" + id;
-  });
-
-  // Event listener for selecting a completed playlist to view songs from
-  $("body").on("click", ".completeList", function() {
-    $(".track-listing").remove();
-
-    const list = $("<ol>")
-      .addClass("track-listing")
-      .appendTo($(this).parent());
-    $.get(`/api/songs/${$(this).data("id")}`, (songList) => {
-      for (let i = 0; i < trackLimit; i++) {
-        let track = $("<li>")
-          .text(`${songList[i].title} by ${songList[i].artist}`)
-          .addClass("track-info")
-          .appendTo(".track-listing");
-      }
+    $(".mediaButton").css({
+        width: "50px",
+        height: "50px",
+        marginTop: "-=530px",
     });
-  });
 
-  function getPlaylistID() {
-    const url = window.location.search;
-    if (url.indexOf("?playlist_id=") !== -1) {
-      let currentPlaylist = url.split("=")[1];
-      return currentPlaylist;
-    }
-  }
+    const path = window.location.pathname;
 
-  // Searches URL for current page and executes related functions
-  function getStatus() {
-    if (path === "/complete") {
-      $.get("/api/user_data", (response) => {
-        viewComplete(response.id);
-      });
-    } else if (path === "/incomplete") {
-      $.get("/api/user_data", (response) => {
-        viewIncomplete(response.id);
-      });
-    }
-  }
+    getStatus();
 
-  // View all completed playlists
-  function viewComplete(id) {
-    $.get("/api/playlists/complete/" + id, (completePlaylists) => {
-      if (completePlaylists.length < 1) {
-        const notice = $("<h4>")
-          .html(
-            `There are no completed playlists, click <a href="/incomplete">here</a> to view playlists in progress`
-          )
-          .appendTo(".completeDiv");
-      } else {
-        for (let i = 0; i < completePlaylists.length; i++) {
-          const playlistDiv = $("<div>")
-            .attr("id", `playlist${i}`)
-            .appendTo(".completeDiv");
-
-          const listItem = $("<button>")
-            .attr("data-id", completePlaylists[i].id)
-            .addClass("btn btn-secondary editPlaylistButton completeList")
-            .text(completePlaylists[i].name)
-            .appendTo(`#playlist${i}`);
-
-          const pushSpotify = $("<button>")
-            .text("Push to Spotify")
-            .addClass("btn btn-secondary editPlaylistButton spotifyPush")
-            .appendTo(`#playlist${i}`);
-
-          $("</br>").appendTo(`#playlist${i}`);
+    function getStatus() {
+        if (path === "/complete") {
+            $.get("/api/user_data", (response) => {
+                viewComplete(response.id);
+            });
+        } else if (path === "/incomplete") {
+            $.get("/api/user_data", (response) => {
+                viewIncomplete(response.id);
+            });
         }
-      }
+    }
+
+    $("body").on("click", ".playlistItem", function() {
+        const id = $(this).data("id");
+        window.location.href = "/existing?playlist_id=" + id;
     });
-  }
 
-  // View all incomplete playlists
-  function viewIncomplete(id) {
-    $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
-      if (incompletePlaylists.length < 1) {
-        const notice = $("<h4>")
-          .html(
-            `There are no playlists in progress, click <a href="/new">here</a> to create one`
-          )
-          .appendTo(".incompleteDiv");
-      } else {
-        for (let i = 0; i < incompletePlaylists.length; i++) {
-          const listItem = $("<button>")
-            .attr("data-id", incompletePlaylists[i].id)
-            .addClass("btn btn-secondary editPlaylistButton playlistItem")
-            .text(incompletePlaylists[i].name)
-            .appendTo(".incompleteDiv");
+    // View all completed playlists
+    function viewComplete(id) {
+        $.get("/api/playlists/complete/" + id, (completePlaylists) => {
+            for (let i = 0; i < completePlaylists.length; i++) {
+                const listItem = $("<button>")
+                    .attr("data-id", completePlaylists[i].id)
+                    .addClass("btn btn-secondary editPlaylistButton playlistItem")
+                    .css({
+                        alignItems: "center",
+                        width: "350px",
+                        fontSize: "25px"
+                    })
+                    .text(completePlaylists[i].name)
+                    .appendTo(".complete-playlistList");
 
-          $("</br>").appendTo(".incompleteDiv");
-          console.log(incompletePlaylists[i].name);
-        }
-      }
-    });
-  }
+                const pushSpotify = $("<button>")
+                    .text("Push to Spotify")
+                    .addClass("btn btn-secondary editPlaylistButton playlistItem")
+                    .appendTo(".complete-playlistList");
 
-  // Takes the top 12 songs in the playlist above 3.0 avg_rating, and establishes the playlist
-  function generatePlaylist() {
-    let id = getPlaylistID();
-    $.ajax({
-      method: "PUT",
-      url: `/api/playlists/${id}`,
-      data: { completed: true },
-    }).then(function() {
-      window.location.replace("/complete");
-      filterFailed(id);
-    });
-  }
-
-  // Delete songs below 3.1 rating or null within selected playlist
-  function filterFailed(playlistID) {
-    $.get(`/api/songs/failed/${playlistID}`, (failedSongs) => {
-      for (let i = 0; i < failedSongs.length; i++) {
-        $.ajax({
-          method: "DELETE",
-          url: `/api/songs/${failedSongs[i].id}`,
+                $("</br>").appendTo(".complete-playlistList");
+                console.log(completePlaylists[i].name);
+            } // Insert code to generate button/list in HTML file
         });
-      }
-    });
-  }
+    }
+
+    // View all incomplete playlists
+    function viewIncomplete(id) {
+        $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
+            for (let i = 0; i < incompletePlaylists.length; i++) {
+                const listItem = $("<button>")
+                    .attr("data-id", incompletePlaylists[i].id)
+                    .addClass("btn btn-secondary editPlaylistButton playlistItem")
+                    .css({
+                        alignItems: "center",
+                        width: "350px",
+                        fontSize: "25px"
+                    })
+                    .text(incompletePlaylists[i].name)
+                    .appendTo(".incomplete-playlistList");
+
+                $("</br>").appendTo(".incomplete-playlistList");
+                console.log(incompletePlaylists[i].name);
+            } // Insert code to generate button/list in HTML file
+        });
+    }
+
+    function viewUserPlaylists(id) {
+        $.get("/api/playlists/" + id, (userPlaylists) => {
+            console.log(userPlaylists);
+        });
+    }
+
+    // When specific incomplete playlist is chosen, redirect to song/rating page
+    function viewOneIncomplete(event) {
+        event.preventDefault();
+
+        const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
+        window.location.href = "/existing?playlist_id=" + id;
+
+        // After redirect, HTML elements need to be populated based on results
+        // Pilot pending rating, copilot pending rating
+    }
+
+    // When specific complete playlist is chosen, generate list of songs dynamically
+    function viewOneComplete(event) {
+        event.preventDefault();
+        // Insert code to pull either a list of song titles, or generate a list of
+        // Spotify playbars
+    }
+
+    // When either playlist is deleted, remove playlist and songs from tables
+    function deleteOne(event) {
+        event.preventDefault();
+
+        const id = $("#whateverIDassociatedWithButton"); //UPDATE HERE!!!
+        $.delete(`/api/playlists/${id}`, (deletedPlaylist) => {
+            console.log(`${deletedPlaylist.name} was deleted.`);
+        });
+    }
 });

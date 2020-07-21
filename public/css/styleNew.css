@@ -1,142 +1,142 @@
 body {
-  background-color: #3f3e66;
+    background-color: #3f3e66;
 }
 
 header {
-  background-color: #ffe0ac;
-  padding: 0;
-  border: 0;
-  height: 100px;
-  z-index: -1;
+    background-color: #ffe0ac;
+    padding: 0;
+    border: 0;
+    height: 100px;
+    z-index: -1;
 }
 
 .header img {
-  display: inline;
+    display: inline;
 }
 
 .header h1 {
-  color: #3f3e66;
-  font-family: 'tw_cen_mt_stdbold';
-  padding-left: 10px;
-  display: inline;
+    color: #3f3e66;
+    font-family: 'tw_cen_mt_stdbold';
+    padding-left: 10px;
+    display: inline;
 }
 
 .vertical-center {
-  margin-top: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  position: relative;
+    margin-top: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: relative;
 }
 
 .signUpButton {
-  background: #3498db;
-  width: 180px;
-  padding: 4px 0;
-  position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  border-radius: 3px;
+    background: #3498db;
+    width: 180px;
+    padding: 4px 0;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 3px;
 }
 
 button {
-  font-family: 'tw_cen_mt_stdbold';
-  text-align: center;
-  text-transform: uppercase;
-  color: #fff;
-  user-select: none;
+    font-family: 'tw_cen_mt_stdbold';
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    user-select: none;
 }
 
 .signUpButton:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .signUpButton:after {
-  content: '';
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 10%;
-  border-radius: 50%;
-  background-color: darken(#f1c40f, 20%);
-  opacity: 0.4;
-  bottom: -30px;
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    border-radius: 50%;
+    background-color: darken(#f1c40f, 20%);
+    opacity: 0.4;
+    bottom: -30px;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
 .loginButton {
-  width: 180px;
-  height: 60px;
-  position: relative;
+    width: 180px;
+    height: 60px;
+    position: relative;
 }
 
 .btn {
-  width: 180px;
-  height: 60px;
-  cursor: pointer;
-  background: transparent;
-  border: 1px solid #ffe0ac;
-  outline: none;
-  transition: 1s ease-in-out;
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid #ffe0ac;
+    outline: none;
+    transition: 1s ease-in-out;
 }
 
 svg {
-  position: absolute;
-  left: 0;
-  top: 0;
-  fill: none;
-  stroke: #fff;
-  stroke-dasharray: 150 480;
-  stroke-dashoffset: 150;
-  transition: 1s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
 }
 
 .btn:hover {
-  transition: 1s ease-in-out;
-  background: #ffe0ac;
+    transition: 1s ease-in-out;
+    background: #ffe0ac;
 }
 
 .btn:hover svg {
-  stroke-dashoffset: -480;
+    stroke-dashoffset: -480;
 }
 
 .btn span {
-  color: white;
-  font-size: 18px;
-  font-weight: 100;
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
 }
 
 .formContainer {
-  z-index: 10;
-  margin-top: -170px;
-  text-align: center;
+    z-index: 10;
+    margin-top: -170px;
+    text-align: center;
 }
 
 .searchButtonContainer {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 label,
 p,
 h2 {
-  color: #ffe0ac;
+    color: #ffe0ac;
 }
 
 .form-group {
-  text-align: center;
-  margin: 0 auto;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .newPlaylist {
-  text-align: center;
+    text-align: center;
 }
 
 .form-control {
-  margin: 10px;
+    margin: 10px;
 }
 
 label {
-  font-size: 20px;
-  font-family: 'tw_cen_mt_stdbold';
+    font-size: 20px;
+    font-family: 'tw_cen_mt_stdbold';
 }

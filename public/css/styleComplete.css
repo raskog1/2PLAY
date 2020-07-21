@@ -1,5 +1,6 @@
 body {
     background-color: #3f3e66;
+    height: 850px;
 }
 
 header {
@@ -16,9 +17,14 @@ header {
 
 .header h1 {
     color: #3f3e66;
-    font-family: 'tw_cen_mt_stdbold';
+    font-family: "tw_cen_mt_stdbold";
     padding-left: 10px;
     display: inline;
+}
+
+h4 {
+    font-family: "tw_cen_mt_stdbold";
+    font-size: 32px;
 }
 
 .vertical-center {
@@ -41,7 +47,7 @@ header {
 }
 
 button {
-    font-family: 'tw_cen_mt_stdbold';
+    font-family: "tw_cen_mt_stdbold";
     text-align: center;
     text-transform: uppercase;
     color: #fff;
@@ -53,7 +59,7 @@ button {
 }
 
 .signUpButton:after {
-    content: '';
+    content: "";
     display: block;
     position: absolute;
     width: 100%;
@@ -64,7 +70,7 @@ button {
     bottom: -30px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:100&display=swap");
 .loginButton {
     width: 180px;
     height: 60px;
@@ -108,9 +114,12 @@ svg {
 }
 
 .formContainer {
-    z-index: 10;
-    margin-right: 200px;
+    z-index: 11;
+    float: right;
     margin-top: -200px;
+    max-width: 365px;
+    margin-left: 825px;
+    position: absolute;
 }
 
 .searchButtonContainer {
@@ -129,6 +138,8 @@ li {
     z-index: 11;
     float: left;
     margin-top: -200px;
+    max-width: 430px;
+    margin-left: 50px;
 }
 
 .rateButton {
@@ -137,4 +148,41 @@ li {
     width: 90px;
     height: 30px;
     text-align: center;
+    cursor: pointer;
+}
+
+.results {
+    z-index: 11;
+    text-align: center;
+    margin-top: -200px;
+    max-width: 430px;
+    margin-left: 50px;
+}
+
+.suggestedSongs {
+    z-index: 15;
+    margin-left: 725px;
+    padding: 0px;
+    max-width: 500px;
+    position: relative;
+}
+
+.containerRow {
+    width: 400px;
+    padding: 0px;
+}
+
+.form-group {
+    width: 325px;
+    height: 100px;
+}
+
+.complete-playlistlist {
+    margin-top: 100px;
+    justify-content: center;
+    text-align: center;
+}
+
+.completeDiv {
+    margin-top: -150px;
 }
