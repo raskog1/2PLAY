@@ -13,14 +13,10 @@ $(document).ready(function() {
 
   function getStatus() {
     if (path === "/complete") {
-      $(".completeDiv").css("display", "inline");
-      $(".incompleteDiv").css("display", "none");
       $.get("/api/user_data", (response) => {
         viewComplete(response.id);
       });
     } else if (path === "/incomplete") {
-      $(".completeDiv").css("display", "none");
-      $(".incompleteDiv").css("display", "inline");
       $.get("/api/user_data", (response) => {
         viewIncomplete(response.id);
       });
