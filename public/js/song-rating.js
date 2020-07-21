@@ -1,7 +1,4 @@
 $(document).ready(() => {
-  let url = window.location.search;
-  let currentPlaylist;
-
   getAverage();
 
   // Event listener for when any song is rated and the RATE button is clicked
@@ -26,16 +23,12 @@ $(document).ready(() => {
     rateSong(user, songId, score);
   });
 
-  $("#generateComplete").on("click", function(event) {
-    event.preventDefault();
-    generatePlaylist();
-  });
-
   // Grab the playlist ID from the URL
   function getPlaylistID() {
+    const url = window.location.search;
     if (url.indexOf("?playlist_id=") !== -1) {
-      currentPlaylist = url.split("=")[1];
-      console.log("Getting Playlist ID FIRING!");
+      let currentPlaylist = url.split("=")[1];
+      return currentPlaylist;
     }
   }
 
@@ -95,22 +88,16 @@ $(document).ready(() => {
 
   // In current playlist, calculates how many songs are above 3.0 avg_rating
   function calcPassing() {
-    getPlaylistID();
-    $.get(`/api/songs/passing/${currentPlaylist}`, (passing) => {
+    $.get(`/api/songs/passing/${getPlaylistID()}`, (passing) => {
       if (passing.length >= 12) {
         console.log("Generate Button Can be Initiated!!!");
+        $("#generateComplete")
+          .css("display", "block")
+          .css("vertical-align", "middle");
+        // Need to hide search bar and ratings secition at this point
       } else {
         console.log(`You have ${passing.length} completed songs`);
       }
     });
-  }
-
-  // Takes the top 12 songs in the playlist above 3.0 avg_rating, and establishes the playlist
-  function generatePlaylist() {
-    $.ajax({
-      method: "PUT",
-      url: `/api/playlists/${currentPlaylist}`,
-      data: { completed: true },
-    }).then(window.location.replace("/complete"));
   }
 });
