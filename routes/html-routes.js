@@ -60,8 +60,6 @@ module.exports = function(app) {
     app.get('/incomplete', function(req, res) {
         res.render('incomplete', {
             style: 'styleIncomplete.css',
-
-
         });
     });
 

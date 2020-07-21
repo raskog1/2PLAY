@@ -102,6 +102,7 @@ $(document).ready(() => {
             const rateIt = $("<button>")
                 .text("RATE")
                 .addClass("rateIt")
+                .addClass("btn btn-secondary rateButton")
                 .attr("data-id", id)
                 .appendTo(`#${divName}${i}`);
 

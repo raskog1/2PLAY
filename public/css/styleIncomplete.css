@@ -177,12 +177,12 @@ li {
     height: 100px;
 }
 
-.complete-playlistlist {
+.incomplete-playlistlist {
     margin-top: 100px;
     justify-content: center;
     text-align: center;
 }
 
-.completeDiv {
+.incompleteDiv {
     margin-top: -150px;
 }
