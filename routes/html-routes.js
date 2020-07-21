@@ -4,10 +4,10 @@
 
 // Dependencies
 // =============================================================
-const path = require('path');
+const path = require("path");
 
 // Requiring our custom middleware for checking if a user is logged in
-const isAuthenticated = require('../config/middleware/isAuthenticated');
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // Routes
 // =============================================================
@@ -58,34 +58,16 @@ module.exports = function(app) {
         });
     });
 
-    app.get('/incomplete', function(req, res) {
-        res.render('complete', {
-            style: 'styleIncomplete.css',
-        });
-    });
-
     app.get('/complete', function(req, res) {
         res.render('complete', {
             style: 'styleComplete.css',
         });
 
-        app.get("/complete", function(req, res) {
-            res.render("complete", {
-                style: 'styleComplete.css'
-            });
-        });
 
         app.get("/main", function(req, res) {
             res.render("mainMenu", {
                 style: "styleMainMenu.css"
             });
-        });
-        app.get('/main', function(req, res) {
-            res.render('mainMenu', {
-                style: 'styleMainMenu.css',
-
-            });
-
         });
     });
 }
