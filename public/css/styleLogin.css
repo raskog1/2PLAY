@@ -113,7 +113,7 @@ header {
 }
 
 .header img {
-  display: inline;
+  margin-bottom: 25px;
 }
 
 .header h1 {
@@ -121,4 +121,5 @@ header {
   font-family: 'tw_cen_mt_stdbold';
   padding-left: 10px;
   display: inline;
+  line-height: 1.5em;
 }
