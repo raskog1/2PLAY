@@ -14,7 +14,7 @@ $(document).ready(function() {
             );
         });
 
-        $("#mediaButton1").on("click", function() {
+        $('#mediaButton1').on('click', function() {
             $('h2').fadeOut(700, function() {});
             var animation = $('.mediaButton').delay(800).animate({
                     width: '50px',
@@ -25,10 +25,10 @@ $(document).ready(function() {
             );
             animation.off('click');
             setTimeout(function() {
-                window.location.href = "/new";
+                window.location.href = '/new';
             }, 3100);
         });
-        $("#mediaButton2").on("click", function() {
+        $('#mediaButton2').on('click', function() {
             $('h2').fadeOut(700, function() {});
             var animation = $('.mediaButton').delay(800).animate({
                     width: '50px',
@@ -39,10 +39,10 @@ $(document).ready(function() {
             );
             animation.off('click');
             setTimeout(function() {
-                window.location.href = "/existing";
+                window.location.href = '/incomplete';
             }, 3100);
         });
-        $("#mediaButton3").on("click", function() {
+        $('#mediaButton3').on('click', function() {
             $('h2').fadeOut(700, function() {});
             var animation = $('.mediaButton').delay(800).animate({
                     width: '50px',
@@ -53,10 +53,8 @@ $(document).ready(function() {
             );
             animation.off('click');
             setTimeout(function() {
-                window.location.href = "/complete";
+                window.location.href = '/complete';
             }, 3100);
         });
     }
-
-
 });

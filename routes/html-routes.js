@@ -13,12 +13,12 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 // =============================================================
 module.exports = function(app) {
     // landing route loads landing.html
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/landing.html'));
+    app.get("/", (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/landing.html"));
     });
 
-    app.get('/rooms', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/rooms.html'));
+    app.get("/rooms", (req, res) => {
+        res.sendFile(path.join(__dirname, "../public/rooms.html"));
     });
 
     app.get("/signup", (req, res) => {
@@ -40,34 +40,34 @@ module.exports = function(app) {
     // Here we've add our isAuthenticated middleware to this route.
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/main", isAuthenticated, (req, res) => {
-        // res.sendFile(path.join(__dirname, "../public/mainMenu.html"));
         res.render("mainMenu", {
-            style: 'styleMainMenu.css'
+            style: "styleMainMenu.css",
         });
     });
 
-    app.get('/new', function(req, res) {
-        res.render('new', {
-            style: 'styleNew.css',
+    app.get("/new", function(req, res) {
+        res.render("new", {
+            style: "styleNew.css",
         });
     });
 
-    app.get('/existing', function(req, res) {
-        res.render('existing', {
-            style: 'styleExisting.css',
+    app.get("/existing", function(req, res) {
+        res.render("existing", {
+            style: "styleExisting.css",
         });
     });
 
-    app.get('/complete', function(req, res) {
-        res.render('complete', {
-            style: 'styleComplete.css',
-        });
+    app.get('/incomplete', function(req, res) {
+        res.render('incomplete', {
+            style: 'styleIncomplete.css',
 
 
-        app.get("/main", function(req, res) {
-            res.render("mainMenu", {
-                style: "styleMainMenu.css"
-            });
         });
     });
-}
+
+    app.get("/complete", function(req, res) {
+        res.render("complete", {
+            style: "styleComplete.css",
+        });
+    });
+};

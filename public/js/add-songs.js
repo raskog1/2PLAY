@@ -44,25 +44,28 @@ $(document).ready(() => {
     function getPilotUnrated(id) {
         // Create a header using the pilot's input
         $.get("/api/songs/pilot/" + id, (unrated) => {
-            console.log(unrated);
-            const header = $("<h4>")
-                .text(`Songs that ${unrated[0].Playlist.pilot} needs to rate:`)
-                .appendTo(".pilot");
+            if (unrated.length > 0) {
+                const header = $("<h4>")
+                    .text(`Songs that ${unrated[0].Playlist.pilot} needs to rate:`)
+                    .appendTo(".pilot");
 
-            // Generate the list of songs awaiting pilot ratings
-            populate(unrated, ".pilot", "pilots");
+                // Generate the list of songs awaiting pilot ratings
+                populate(unrated, ".pilot", "pilots");
+            }
         });
     }
 
     function getCopilotUnrated(id) {
         // Create a header using the copilot's input
         $.get("/api/songs/copilot/" + id, (unrated) => {
-            const header = $("<h4>")
-                .text(`Songs that ${unrated[0].Playlist.copilot} needs to rate:`)
-                .appendTo(".coPilot");
+            if (unrated.length > 0) {
+                const header = $("<h4>")
+                    .text(`Songs that ${unrated[0].Playlist.copilot} needs to rate:`)
+                    .appendTo(".coPilot");
 
-            // Generate the list of songs awaiting copilot ratings
-            populate(unrated, ".coPilot", "copilots");
+                // Generate the list of songs awaiting copilot ratings
+                populate(unrated, ".coPilot", "copilots");
+            }
         });
     }
 
@@ -130,50 +133,6 @@ $(document).ready(() => {
             edit: true,
         });
 
-        function populate(songArray, location, divName) {
-            // If less than five search results, takes the length of the response
-            const limit = songArray.length < 3 ? songArray.length : 3;
-
-            for (let i = 0; i < limit; i++) {
-                const id = songArray[i].id;
-                const trackId = songArray[i].trackId;
-                const title = songArray[i].title;
-                const artist = songArray[i].artist;
-
-                // Creating a div to house the iframe and button
-                const songDiv = $("<div>")
-                    .attr("id", `${divName}${i}`)
-                    .appendTo(location);
-
-                // Dynamically creating the iframes for playback of results
-                const song = $("<iframe>", {
-                    src: `https://open.spotify.com/embed/track/${trackId}`,
-                    id: id,
-                    width: "300",
-                    height: "80",
-                    margin: "0",
-                    padding: "0",
-                    position: "relative",
-                    zIndex: "-1",
-                    frameborder: "0",
-                    allowtransparency: "true",
-                    allow: "encrypted-media",
-                }).appendTo(`#${divName}${i}`);
-
-                // Dynamically creating the "Suggest" button with data attributes
-                const suggest = $("<button>", {
-                        text: "RATE",
-                    })
-                    .addClass("rate")
-                    .addClass("btn btn-secondary rateButton")
-                    .attr("data-id", id)
-                    .attr("data-title", title)
-                    .attr("data-artist", artist)
-                    .appendTo(`#${divName}${i}`);
-
-                $("</br>").appendTo(location);
-            }
-        }
         $(".item-rate").css("width", "5%");
     }
 });
