@@ -26,8 +26,8 @@ $(document).ready(() => {
   // Grab the playlist ID from the URL
   function getPlaylistID() {
     const url = window.location.search;
-    if (url.indexOf("?playlist_id=") !== -1) {
-      let currentPlaylist = url.split("=")[1];
+    if (url.indexOf('?playlist_id=') !== -1) {
+      let currentPlaylist = url.split('=')[1];
       return currentPlaylist;
     }
   }
@@ -89,11 +89,17 @@ $(document).ready(() => {
   // In current playlist, calculates how many songs are above 3.0 avg_rating
   function calcPassing() {
     $.get(`/api/songs/passing/${getPlaylistID()}`, (passing) => {
-      if (passing.length >= 12) {
-        console.log("Generate Button Can be Initiated!!!");
-        $("#generateComplete")
-          .css("display", "block")
-          .css("vertical-align", "middle");
+
+      console.log(passing.length);
+      if (passing.length > 3) {
+        console.log('Generate Button Can be Initiated!!!');
+        $('#generateComplete').css({
+          verticalAlign: 'middle',
+          display: 'block',
+        });
+        $('.formContainer').attr('style', 'display:none');
+        $('.songsToRate').attr('style', 'display:none');
+
         // Need to hide search bar and ratings secition at this point
       } else {
         console.log(`You have ${passing.length} completed songs`);
@@ -101,12 +107,14 @@ $(document).ready(() => {
     });
   }
 
+
   $("#generateComplete").on("click", function(event) {
     event.preventDefault();
     generatePlaylist();
   });
 
-  //do we need this??
+
+
   // Takes the top 12 songs in the playlist above 3.0 avg_rating, and establishes the playlist
   function generatePlaylist() {
     $.ajax({
