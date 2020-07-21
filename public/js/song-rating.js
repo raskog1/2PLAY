@@ -5,66 +5,60 @@ $(document).ready(() => {
   getAverage();
 
   // Event listener for when any song is rated and the RATE button is clicked
-  $("body").on("click", ".rateIt", function(event) {
+  $('body').on('click', '.rateIt', function (event) {
     event.preventDefault();
 
     // Get the submitted rating
-    let score = $(event.target)
-      .parent()
-      .find("input")
-      .val();
+    let score = $(event.target).parent().find('input').val();
 
     // Get the song id from the button data-id
-    let songId = $(this).data("id");
+    let songId = $(this).data('id');
 
     // Get the user from the parent, parent div data.user
-    let user = $(this)
-      .parent()
-      .parent()
-      .data("user");
+    let user = $(this).parent().parent().data('user');
 
     rateSong(user, songId, score);
   });
 
-  $("#generateComplete").on("click", function(event) {
+  $('#generateComplete').on('click', function (event) {
     event.preventDefault();
     generatePlaylist();
   });
 
   // Grab the playlist ID from the URL
   function getPlaylistID() {
-    if (url.indexOf("?playlist_id=") !== -1) {
-      currentPlaylist = url.split("=")[1];
-      console.log("Getting Playlist ID FIRING!");
+    if (url.indexOf('?playlist_id=') !== -1) {
+      currentPlaylist = url.split('=')[1];
+      console.log('Getting Playlist ID FIRING!');
     }
   }
 
   // Writes the user rating to the database, then checks to see if both users have rated
   function rateSong(user, songId, score) {
     // "if" statement differentiates between who is rating
-    if (user === "pilot") {
+    if (user === 'pilot') {
       const ratingData = {
         id: songId,
         pilot_rating: score,
       };
       $.ajax({
-        method: "PUT",
-        url: "/api/songs",
+        method: 'PUT',
+        url: '/api/songs',
         data: ratingData,
-      }).then(function() {
+      }).then(function () {
         window.location.reload();
         getAverage();
       });
-    } else if (user === "coPilot") {
+    } else if (user === 'coPilot') {
       const ratingData = {
         id: songId,
         copilot_rating: score,
       };
       $.ajax({
-        method: "PUT",
-        url: "/api/songs",
+        method: 'PUT',
+        url: '/api/songs',
         data: ratingData,
-      }).then(function() {
+      }).then(function () {
         window.location.reload();
         getAverage();
       });
@@ -73,8 +67,8 @@ $(document).ready(() => {
 
   // Finds all songs with pilot/copilot rating, and give average rating
   function getAverage() {
-    console.log("firing");
-    $.get("/api/songs/rated", (rated) => {
+    console.log('firing');
+    $.get('/api/songs/rated', (rated) => {
       rated.forEach((element) => {
         let a = element.pilot_rating;
         let b = element.copilot_rating;
@@ -85,8 +79,8 @@ $(document).ready(() => {
         };
 
         $.ajax({
-          method: "PUT",
-          url: "/api/songs",
+          method: 'PUT',
+          url: '/api/songs',
           data: average,
         });
       });
@@ -98,7 +92,7 @@ $(document).ready(() => {
     getPlaylistID();
     $.get(`/api/songs/passing/${currentPlaylist}`, (passing) => {
       if (passing.length >= 12) {
-        console.log("Generate Button Can be Initiated!!!");
+        console.log('Generate Button Can be Initiated!!!');
       } else {
         console.log(`You have ${passing.length} completed songs`);
       }
@@ -108,9 +102,9 @@ $(document).ready(() => {
   // Takes the top 12 songs in the playlist above 3.0 avg_rating, and establishes the playlist
   function generatePlaylist() {
     $.ajax({
-      method: "PUT",
+      method: 'PUT',
       url: `/api/playlists/${currentPlaylist}`,
       data: { completed: true },
-    }).then(window.location.replace("/complete"));
+    }).then(window.location.replace('/complete'));
   }
 });
