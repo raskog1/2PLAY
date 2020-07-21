@@ -40,9 +40,14 @@ $(document).ready(() => {
         method: 'PUT',
         url: '/api/songs',
         data: ratingData,
+<<<<<<< HEAD
       }).then(function () {
         window.location.reload();
+=======
+      }).then(function() {
+>>>>>>> a3b3020... Fixed rating error from last push
         getAverage();
+        window.location.reload();
       });
     } else if (user === 'coPilot') {
       const ratingData = {
@@ -53,17 +58,26 @@ $(document).ready(() => {
         method: 'PUT',
         url: '/api/songs',
         data: ratingData,
+<<<<<<< HEAD
       }).then(function () {
         window.location.reload();
+=======
+      }).then(function() {
+>>>>>>> a3b3020... Fixed rating error from last push
         getAverage();
+        window.location.reload();
       });
     }
   }
 
   // Finds all songs with pilot/copilot rating, and give average rating
   function getAverage() {
+<<<<<<< HEAD
     console.log('firing');
     $.get('/api/songs/rated', (rated) => {
+=======
+    $.get(`/api/songs/rated/${getPlaylistID()}`, (rated) => {
+>>>>>>> a3b3020... Fixed rating error from last push
       rated.forEach((element) => {
         let a = element.pilot_rating;
         let b = element.copilot_rating;

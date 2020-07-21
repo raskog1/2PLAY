@@ -34,12 +34,28 @@ $(document).ready(() => {
         $.post("/api/songs", songData).then(location.reload());
     }
 
+<<<<<<< HEAD
     // Grab the playlist ID from the URL
     function getPlaylistID() {
         if (url.indexOf("?playlist_id=") !== -1) {
             currentPlaylist = url.split("=")[1];
         }
     }
+=======
+    $(".rating-star").hillRate({
+      stars: 5,
+      imageStar: {
+        default: "images/star-empty-gold.png",
+        full: "images/star-full-gold.png",
+        half: "images/star-half-gold.png",
+      },
+      valuesStar: [[1], [2], [3], [4], [5]],
+      nameInput: "rating",
+      responsive: true,
+      showSelectedValue: false,
+      edit: true,
+    });
+>>>>>>> a3b3020... Fixed rating error from last push
 
     function getPilotUnrated(id) {
         // Create a header using the pilot's input
