@@ -54,6 +54,17 @@ module.exports = function(app) {
     });
   });
 
+  // Updates a playlist (ideally changing complete to true)
+  app.put("/api/playlists/:id", (req, res) => {
+    db.Playlist.update(req.body, {
+      where: {
+        id: req.params.id,
+      },
+    }).then(function(updatedPlaylist) {
+      res.json(updatedPlaylist);
+    });
+  });
+
   // Delete playlist from playlists table
   // Should delete all songs associated with that playlist from songs table
   app.delete("/api/playlists/:id", (req, res) => {
