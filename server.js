@@ -46,16 +46,8 @@ require("./routes/search-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-<<<<<<< HEAD
 db.sequelize.sync().then(function() {
-    app.listen(PORT, function() {
-        console.log('App listening on PORT ' + PORT);
-    });
-});
-=======
-db.sequelize.sync({ force: true }).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
->>>>>>> a3b3020... Fixed rating error from last push
