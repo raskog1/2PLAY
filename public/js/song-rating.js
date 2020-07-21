@@ -26,11 +26,16 @@ $(document).ready(() => {
     rateSong(user, songId, score);
   });
 
+  $("#generateComplete").on("click", function(event) {
+    event.preventDefault();
+    generatePlaylist();
+  });
+
   // Grab the playlist ID from the URL
   function getPlaylistID() {
     if (url.indexOf("?playlist_id=") !== -1) {
       currentPlaylist = url.split("=")[1];
-      return currentPlaylist;
+      console.log("Getting Playlist ID FIRING!");
     }
   }
 
@@ -94,7 +99,6 @@ $(document).ready(() => {
     $.get(`/api/songs/passing/${currentPlaylist}`, (passing) => {
       if (passing.length >= 12) {
         console.log("Generate Button Can be Initiated!!!");
-        generatePlaylist();
       } else {
         console.log(`You have ${passing.length} completed songs`);
       }
@@ -103,9 +107,10 @@ $(document).ready(() => {
 
   // Takes the top 12 songs in the playlist above 3.0 avg_rating, and establishes the playlist
   function generatePlaylist() {
-    console.log("It seemed to fire...");
-    $.get("/api/songs", (playlist) => {
-      console.log(playlist);
-    });
+    $.ajax({
+      method: "PUT",
+      url: `/api/playlists/${currentPlaylist}`,
+      data: { completed: true },
+    }).then(window.location.replace("/complete"));
   }
 });

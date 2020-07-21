@@ -58,7 +58,7 @@ module.exports = function(app) {
   app.put("/api/playlists/:id", (req, res) => {
     db.Playlist.update(req.body, {
       where: {
-        id: req.body.id,
+        id: req.params.id,
       },
     }).then(function(updatedPlaylist) {
       res.json(updatedPlaylist);
