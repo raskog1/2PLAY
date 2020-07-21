@@ -57,9 +57,11 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/incomplete", function(req, res) {
-    res.render("complete", {
-      style: "styleIncomplete.css",
+  app.get('/incomplete', function (req, res) {
+    res.render('incomplete', {
+      style: 'styleIncomplete.css',
+
+
     });
   });
 
