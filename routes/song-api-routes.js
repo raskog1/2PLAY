@@ -48,9 +48,10 @@ module.exports = function(app) {
   });
 
   // Get all tracks with both pilot/copilot ratings
-  app.get("/api/songs/rated", (req, res) => {
+  app.get("/api/songs/rated/:id", (req, res) => {
     db.Song.findAll({
       where: {
+        PlaylistId: req.params.id,
         avg_rating: {
           [Op.is]: null,
         },
