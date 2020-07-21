@@ -1,5 +1,6 @@
 body {
     background-color: #3f3e66;
+    height: 850px;
 }
 
 header {
@@ -109,8 +110,11 @@ svg {
 
 .formContainer {
     z-index: 11;
-    margin-right: 150px;
+    float: right;
     margin-top: -200px;
+    max-width: 365px;
+    margin-left: 825px;
+    position: absolute;
 }
 
 .searchButtonContainer {
@@ -130,6 +134,7 @@ li {
     float: left;
     margin-top: -200px;
     max-width: 430px;
+    margin-left: 50px;
 }
 
 .rateButton {
@@ -142,14 +147,50 @@ li {
 }
 
 .results {
-    z-index: 10;
+    z-index: 11;
     text-align: center;
-    justify-content: center;
     margin-top: -200px;
+    max-width: 430px;
+    margin-left: 50px;
 }
 
 .suggestedSongs {
     z-index: 15;
-    float: none;
-    margin-top: -200px;
+    margin-left: 725px;
+    padding: 0px;
+    max-width: 500px;
+    position: relative;
 }
+
+.containerRow {
+    width: 400px;
+    padding: 0px;
+}
+
+.form-group {
+    width: 325px;
+    height: 100px;
+}
+
+
+/* .login {
+    z-index: 11;
+    float: right;
+    margin-top: -200px;
+    max-width: 430px;
+    margin-left: 50px;
+    justify-content: right;
+} */
+
+
+/* .testt {
+    width: 400px;
+    padding: 0px;
+}
+
+.testtt {
+    z-index: 11;
+    float: right;
+    margin-top: 0px;
+    max-width: 430px;
+} */
