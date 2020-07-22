@@ -14,8 +14,7 @@ const cookieParser = require("cookie-parser");
 // Sets up the Express App
 // =============================================================
 const app = express();
-const PORT = process.env.PORT;
-// || 8080;
+const PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 const db = require("./models");
