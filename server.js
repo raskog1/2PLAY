@@ -14,7 +14,8 @@ const cookieParser = require("cookie-parser");
 // Sets up the Express App
 // =============================================================
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT;
+// || 8080;
 
 // Requiring our models for syncing
 const db = require("./models");
@@ -46,8 +47,8 @@ require("./routes/search-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync().then(function () {
+  app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
   });
 });
