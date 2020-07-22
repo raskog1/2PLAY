@@ -3,13 +3,13 @@ const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
-module.exports = function(app) {
+module.exports = function (app) {
     const client_id = "8dd2ab5f8ca342ad97d39fa1399be0c7";
     const client_secret = "7df68654126f40a49111d8bf20d8dc1e";
 
     var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
 
-    var generateRandomString = function(length) {
+    var generateRandomString = function (length) {
         var text = "";
         var possible =
             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -24,12 +24,12 @@ module.exports = function(app) {
 
     app.use(cors()).use(cookieParser());
 
-    app.get("/login", function(req, res) {
+    app.get("/login", function (req, res) {
         var state = generateRandomString(16);
         res.cookie(stateKey, state);
 
         // your application requests authorization
-        var scope = "user-read-private user-read-email"; //UPDATE SCOPES as we find out what we need
+        var scope = "user-read-private user-read-email playlist-modify-private playlist-modify-public"; //UPDATE SCOPES as we find out what we need
 
         res.redirect(
             "https://accounts.spotify.com/authorize?" +
@@ -44,7 +44,7 @@ module.exports = function(app) {
 
     });
 
-    app.get("/callback", function(req, res) {
+    app.get("/callback", function (req, res) {
         // your application requests refresh and access tokens
         // after checking the state parameter
 
@@ -78,7 +78,7 @@ module.exports = function(app) {
                 json: true,
             };
 
-            request.post(authOptions, function(error, response, body) {
+            request.post(authOptions, function (error, response, body) {
                 if (!error && response.statusCode === 200) {
                     var access_token = body.access_token,
                         refresh_token = body.refresh_token;
@@ -118,7 +118,7 @@ module.exports = function(app) {
         // res.cookie(spotifyAccessToken, body.access_token);
     });
 
-    app.get("/refresh_token", function(req, res) {
+    app.get("/refresh_token", function (req, res) {
         // requesting access token from refresh token
         var refresh_token = req.query.refresh_token;
         var authOptions = {
@@ -134,7 +134,7 @@ module.exports = function(app) {
             json: true,
         };
 
-        request.post(authOptions, function(error, response, body) {
+        request.post(authOptions, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 var access_token = body.access_token;
                 res.send({
