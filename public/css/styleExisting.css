@@ -13,7 +13,7 @@ header {
 }
 
 .header img {
-  display: inline;
+  margin-bottom: 25px;
 }
 
 .header h1 {
@@ -21,6 +21,7 @@ header {
   font-family: 'tw_cen_mt_stdbold';
   padding-left: 10px;
   display: inline;
+  line-height: 1.5em;
 }
 
 .vertical-center {
@@ -139,12 +140,13 @@ li {
 }
 
 .rateButton {
-  margin-top: -90px;
+  margin-bottom: 90px;
   margin-left: 10px;
   width: 90px;
   height: 30px;
   text-align: center;
   cursor: pointer;
+  padding: 0;
 }
 
 .results {
@@ -173,23 +175,14 @@ li {
   height: 100px;
 }
 
-/* .login {
-    z-index: 11;
-    float: right;
-    margin-top: -200px;
-    max-width: 430px;
-    margin-left: 50px;
-    justify-content: right;
-} */
-
-/* .testt {
-    width: 400px;
-    padding: 0px;
+.rating-star {
+  padding: 0;
+  max-width: 100px;
+  margin-top: -90px;
+  margin-left: 310px;
 }
 
-.testtt {
-    z-index: 11;
-    float: right;
-    margin-top: 0px;
-    max-width: 430px;
-} */
+.generate {
+  margin-top: -100px;
+  margin-left: 65px;
+}

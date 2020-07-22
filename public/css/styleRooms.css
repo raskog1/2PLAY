@@ -1,37 +1,38 @@
 body {
-    background-color: #3f3e66;
+  background-color: #3f3e66;
 }
 
 .vertical-center {
-    min-height: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    position: relative;
+  min-height: 80%;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
 }
 
 h1 {
-    color: #ffe0ac;
-    font-family: 'tw_cen_mt_stdbold';
-    font-size: 50px;
-    width: 500px;
+  color: #ffe0ac;
+  font-family: 'tw_cen_mt_stdbold';
+  font-size: 50px;
+  width: 500px;
 }
 
 header {
-    background-color: #ffe0ac;
-    padding: 0;
-    border: 0;
-    height: 100px;
+  background-color: #ffe0ac;
+  padding: 0;
+  border: 0;
+  height: 100px;
 }
 
 .header img {
-    display: inline;
+  margin-bottom: 25px;
 }
 
 .header h1 {
-    color: #3f3e66;
-    font-family: 'tw_cen_mt_stdbold';
-    padding-left: 10px;
-    display: inline;
+  color: #3f3e66;
+  font-family: 'tw_cen_mt_stdbold';
+  padding-left: 10px;
+  display: inline;
+  line-height: 1.5em;
 }

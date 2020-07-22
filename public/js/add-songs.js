@@ -109,7 +109,7 @@ $(document).ready(() => {
         .attr('data-id', id)
         .appendTo(`#${divName}${i}`);
 
-      stars.appendTo(rateIt);
+      stars.appendTo(`#${divName}${i}`);
 
       $('</br>').appendTo(location);
     }
@@ -126,13 +126,6 @@ $(document).ready(() => {
       responsive: true,
       showSelectedValue: false,
       edit: true,
-    });
-
-    $('.rating-star').css({
-      width: '70px',
-      padding: '0',
-      marginRight: '30px',
-      position: 'relative',
     });
   }
 });
