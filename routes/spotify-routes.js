@@ -4,8 +4,11 @@ const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
 module.exports = function(app) {
-  const client_id = process.env.client_id;
-  const client_secret = process.env.client_secret;
+  //   const client_id = process.env.client_id;
+  //   const client_secret = process.env.client_secret;
+
+  const client_id = "8dd2ab5f8ca342ad97d39fa1399be0c7";
+  const client_secret = "7df68654126f40a49111d8bf20d8dc1e";
 
   var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
 
@@ -29,6 +32,7 @@ module.exports = function(app) {
     res.cookie(stateKey, state);
 
     // your application requests authorization
+    //var scope = "user-read-private user-read-email";
     var scope =
       "user-read-private user-read-email playlist-modify-private playlist-modify-public"; //UPDATE SCOPES as we find out what we need
 
@@ -73,7 +77,7 @@ module.exports = function(app) {
         headers: {
           Authorization:
             "Basic " +
-            new Buffer(client_id + ":" + client_secret).toString("base64"),
+            new Buffer.from(client_id + ":" + client_secret).toString("base64"),
         },
         json: true,
       };
@@ -126,7 +130,7 @@ module.exports = function(app) {
       headers: {
         Authorization:
           "Basic " +
-          new Buffer(client_id + ":" + client_secret).toString("base64"),
+          new Buffer.from(client_id + ":" + client_secret).toString("base64"),
       },
       form: {
         grant_type: "refresh_token",

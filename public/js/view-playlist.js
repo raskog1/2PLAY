@@ -1,9 +1,9 @@
 //need for complete.handlebars and existing.handlebars
-$(document).ready(function () {
-  $('.mediaButton').css({
-    width: '50px',
-    height: '50px',
-    marginTop: '-=530px',
+$(document).ready(function() {
+  $(".mediaButton").css({
+    width: "50px",
+    height: "50px",
+    marginTop: "-=530px",
   });
 
   const path = window.location.pathname;
@@ -11,49 +11,61 @@ $(document).ready(function () {
 
   getStatus();
 
-  // Event listener for Playlist Generator button
-  $('#generateComplete').on('click', function (event) {
+  // Event listener for playlist Generator button
+  $("#generateComplete").on("click", function(event) {
     event.preventDefault();
     generatePlaylist();
   });
 
   // Event listener for selecting a playlist to work on
-  $('body').on('click', '.playlistItem', function () {
-    const id = $(this).data('id');
-    window.location.href = '/existing?playlist_id=' + id;
+  $("body").on("click", ".playlistItem", function() {
+    const id = $(this).data("id");
+    window.location.href = "/existing?playlist_id=" + id;
   });
 
   // Event listener for selecting a completed playlist to view songs from
-  $('body').on('click', '.completeList', function () {
-    $('.track-listing').remove();
+  $("body").on("click", ".completeList", function() {
+    $(".track-listing").remove();
 
-    const list = $('<ol>').addClass('track-listing').appendTo($(this).parent());
-    $.get(`/api/songs/${$(this).data('id')}`, (songList) => {
+    const list = $("<ol>")
+      .addClass("track-listing")
+      .appendTo($(this).parent());
+    $.get(`/api/songs/${$(this).data("id")}`, (songList) => {
       for (let i = 0; i < trackLimit; i++) {
-        let track = $('<li>')
+        let track = $("<li>")
           .text(`${songList[i].title} by ${songList[i].artist}`)
-          .addClass('track-info')
-          .appendTo('.track-listing');
+          .addClass("track-info")
+          .appendTo(".track-listing");
       }
     });
   });
 
+  // Event listener to push the completed playlist to Spotify
+  $("body").on("click", ".spotifyPush", function() {
+    const id = $(this).data("id");
+    $.ajax({
+      url: `/api/post-playlist/${id}`,
+      type: "POST",
+    });
+  });
+
+  // Gets current playlist ID from the URL (not functional in complete/incomplete handlebars)
   function getPlaylistID() {
     const url = window.location.search;
-    if (url.indexOf('?playlist_id=') !== -1) {
-      let currentPlaylist = url.split('=')[1];
+    if (url.indexOf("?playlist_id=") !== -1) {
+      let currentPlaylist = url.split("=")[1];
       return currentPlaylist;
     }
   }
 
   // Searches URL for current page and executes related functions
   function getStatus() {
-    if (path === '/complete') {
-      $.get('/api/user_data', (response) => {
+    if (path === "/complete") {
+      $.get("/api/user_data", (response) => {
         viewComplete(response.id);
       });
-    } else if (path === '/incomplete') {
-      $.get('/api/user_data', (response) => {
+    } else if (path === "/incomplete") {
+      $.get("/api/user_data", (response) => {
         viewIncomplete(response.id);
       });
     }
@@ -61,31 +73,32 @@ $(document).ready(function () {
 
   // View all completed playlists
   function viewComplete(id) {
-    $.get('/api/playlists/complete/' + id, (completePlaylists) => {
+    $.get("/api/playlists/complete/" + id, (completePlaylists) => {
       if (completePlaylists.length < 1) {
-        const notice = $('<h4>')
+        const notice = $("<h4>")
           .html(
             `There are no completed playlists, click <a href="/incomplete">here</a> to view playlists in progress`
           )
-          .appendTo('.mb-5');
+          .appendTo(".mb-5");
       } else {
         for (let i = 0; i < completePlaylists.length; i++) {
-          const playlistDiv = $('<div>')
-            .attr('id', `playlist${i}`)
-            .appendTo('.mb-5');
+          const playlistDiv = $("<div>")
+            .attr("id", `playlist${i}`)
+            .appendTo(".mb-5");
 
-          const listItem = $('<button>')
-            .attr('data-id', completePlaylists[i].id)
-            .addClass('btn btn-secondary editPlaylistButton completeList m-2')
+          const listItem = $("<button>")
+            .attr("data-id", completePlaylists[i].id)
+            .addClass("btn btn-secondary editPlaylistButton completeList m-2")
             .text(completePlaylists[i].name)
             .appendTo(`#playlist${i}`);
 
-          const pushSpotify = $('<button>')
-            .text('Push to Spotify')
-            .addClass('btn btn-secondary editPlaylistButton spotifyPush m-2')
+          const pushSpotify = $("<button>")
+            .text("Push to Spotify")
+            .attr("data-id", completePlaylists[i].id)
+            .addClass("btn btn-secondary editPlaylistButton spotifyPush m-2")
             .appendTo(`#playlist${i}`);
 
-          $('</br>').appendTo(`#playlist${i}`);
+          $("</br>").appendTo(`#playlist${i}`);
         }
       }
     });
@@ -93,22 +106,22 @@ $(document).ready(function () {
 
   // View all incomplete playlists
   function viewIncomplete(id) {
-    $.get('/api/playlists/incomplete/' + id, (incompletePlaylists) => {
+    $.get("/api/playlists/incomplete/" + id, (incompletePlaylists) => {
       if (incompletePlaylists.length < 1) {
-        const notice = $('<h4>')
+        const notice = $("<h4>")
           .html(
             `There are no playlists in progress, click <a href="/new">here</a> to create one`
           )
-          .appendTo('.mb-5');
+          .appendTo(".mb-5");
       } else {
         for (let i = 0; i < incompletePlaylists.length; i++) {
-          const listItem = $('<button>')
-            .attr('data-id', incompletePlaylists[i].id)
-            .addClass('btn btn-secondary editPlaylistButton playlistItem')
+          const listItem = $("<button>")
+            .attr("data-id", incompletePlaylists[i].id)
+            .addClass("btn btn-secondary editPlaylistButton playlistItem")
             .text(incompletePlaylists[i].name)
-            .appendTo('.mb-5');
+            .appendTo(".mb-5");
 
-          $('</br>').appendTo('.mb-5');
+          $("</br>").appendTo(".mb-5");
           console.log(incompletePlaylists[i].name);
         }
       }
@@ -119,11 +132,11 @@ $(document).ready(function () {
   function generatePlaylist() {
     let id = getPlaylistID();
     $.ajax({
-      method: 'PUT',
+      method: "PUT",
       url: `/api/playlists/${id}`,
       data: { completed: true },
-    }).then(function () {
-      window.location.replace('/complete');
+    }).then(function() {
+      window.location.replace("/complete");
       filterFailed(id);
     });
   }
@@ -133,7 +146,7 @@ $(document).ready(function () {
     $.get(`/api/songs/failed/${playlistID}`, (failedSongs) => {
       for (let i = 0; i < failedSongs.length; i++) {
         $.ajax({
-          method: 'DELETE',
+          method: "DELETE",
           url: `/api/songs/${failedSongs[i].id}`,
         });
       }
