@@ -1,5 +1,5 @@
 {
-  "name": "project2x4-re.mixtape",
+  "name": "2play",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -21,6 +21,9 @@
     "request": "^2.88.2",
     "sequelize": "^6.3.1"
   },
+  "engines": {
+    "node": "12.16.1"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -29,12 +32,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/92til-infinity/Project2x4-Re.MixTape.git"
+    "url": "git+https://github.com/raskog1/2PLAY.git"
   },
-  "author": "",
+  "author": "Ryan Skog, Scott Glover, Alexandra Noto, Anthone Simone",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/92til-infinity/Project2x4-Re.MixTape/issues"
+    "url": "https://github.com/raskog1/2PLAY/issues"
   },
-  "homepage": "https://github.com/92til-infinity/Project2x4-Re.MixTape#readme"
+  "homepage": "https://github.com/raskog1/2PLAY.#readme"
 }

@@ -22,7 +22,6 @@ const db = require("./models");
 // Sets up the Express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.favicon());
 
 // Static directory
 app.use(express.static("public"));
