@@ -7,7 +7,8 @@ module.exports = function(app) {
   const client_id = process.env.client_id;
   const client_secret = process.env.client_secret;
 
-  var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
+  //var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
+  var redirect_uri = "https://go-2play.herokuapp.com/callback";
 
   var generateRandomString = function(length) {
     var text = "";
