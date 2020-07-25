@@ -8,7 +8,8 @@ module.exports = function(app) {
   const client_secret = process.env.client_secret;
 
   //var redirect_uri = "http://localhost:8080/callback"; // UPDATE HERE!!! to app login
-  var redirect_uri = "https://go-2play.herokuapp.com/callback";
+  //var redirect_uri = "https://go-2play/callback";
+  var redirect_uri = process.env.redirect_uri;
 
   var generateRandomString = function(length) {
     var text = "";
@@ -29,10 +30,8 @@ module.exports = function(app) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
-    // your application requests authorization
-    //var scope = "user-read-private user-read-email";
     var scope =
-      "user-read-private user-read-email playlist-modify-private playlist-modify-public"; //UPDATE SCOPES as we find out what we need
+      "user-read-private user-read-email playlist-modify-private playlist-modify-public";
 
     res.redirect(
       "https://accounts.spotify.com/authorize?" +
