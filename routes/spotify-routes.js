@@ -34,7 +34,7 @@ module.exports = function(app) {
       "user-read-private user-read-email playlist-modify-private playlist-modify-public";
 
     res.redirect(
-      "https://accounts.spotify.com/authorize?" +
+      "http://accounts.spotify.com/authorize?" +
         querystring.stringify({
           response_type: "code",
           client_id: client_id,
