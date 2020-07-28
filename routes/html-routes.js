@@ -11,7 +11,7 @@ const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 // Routes
 // =============================================================
-module.exports = function(app) {
+module.exports = function (app) {
   // landing route loads landing.html
   app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/landing.html"));
@@ -45,31 +45,31 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/new", function(req, res) {
+  app.get("/new", function (req, res) {
     res.render("new", {
       style: "styleNew.css",
     });
   });
 
-  app.get("/existing", function(req, res) {
+  app.get("/existing", function (req, res) {
     res.render("existing", {
       style: "styleExisting.css",
     });
   });
 
-  app.get("/incomplete", function(req, res) {
+  app.get("/incomplete", function (req, res) {
     res.render("incomplete", {
       style: "styleIncomplete.css",
     });
   });
 
-  app.get("/complete", function(req, res) {
+  app.get("/complete", function (req, res) {
     res.render("complete", {
       style: "styleComplete.css",
     });
   });
 
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/landing.html"));
-  });
+  // app.get("/*", (req, res) => {
+  //   res.sendFile(path.join(__dirname, "../public/landing.html"));
+  // });
 };

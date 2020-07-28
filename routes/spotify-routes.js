@@ -3,7 +3,7 @@ const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
-module.exports = function(app) {
+module.exports = function (app) {
   const client_id = process.env.client_id;
   const client_secret = process.env.client_secret;
 
@@ -11,7 +11,7 @@ module.exports = function(app) {
   //var redirect_uri = "https://go-2play/callback";
   var redirect_uri = process.env.redirect_uri;
 
-  var generateRandomString = function(length) {
+  var generateRandomString = function (length) {
     var text = "";
     var possible =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -26,7 +26,7 @@ module.exports = function(app) {
 
   app.use(cors()).use(cookieParser());
 
-  app.get("/login", function(req, res) {
+  app.get("/login", function (req, res) {
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
 
@@ -34,18 +34,18 @@ module.exports = function(app) {
       "user-read-private user-read-email playlist-modify-private playlist-modify-public";
 
     res.redirect(
-      "http://accounts.spotify.com/authorize?" +
-        querystring.stringify({
-          response_type: "code",
-          client_id: client_id,
-          scope: scope,
-          redirect_uri: redirect_uri,
-          state: state,
-        })
+      "https://accounts.spotify.com/authorize?" +
+      querystring.stringify({
+        response_type: "code",
+        client_id: client_id,
+        scope: scope,
+        redirect_uri: redirect_uri,
+        state: state,
+      })
     );
   });
 
-  app.get("/callback", function(req, res) {
+  app.get("/callback", function (req, res) {
     // your application requests refresh and access tokens
     // after checking the state parameter
 
@@ -58,9 +58,9 @@ module.exports = function(app) {
     if (state === null || state !== storedState) {
       res.redirect(
         "/#" +
-          querystring.stringify({
-            error: "state_mismatch",
-          })
+        querystring.stringify({
+          error: "state_mismatch",
+        })
       );
     } else {
       res.clearCookie(stateKey);
@@ -79,7 +79,7 @@ module.exports = function(app) {
         json: true,
       };
 
-      request.post(authOptions, function(error, response, body) {
+      request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
           var access_token = body.access_token,
             refresh_token = body.refresh_token;
@@ -109,9 +109,9 @@ module.exports = function(app) {
         } else {
           res.redirect(
             "/#" +
-              querystring.stringify({
-                error: "invalid_token",
-              })
+            querystring.stringify({
+              error: "invalid_token",
+            })
           );
         }
       });
@@ -119,7 +119,7 @@ module.exports = function(app) {
     // res.cookie(spotifyAccessToken, body.access_token);
   });
 
-  app.get("/refresh_token", function(req, res) {
+  app.get("/refresh_token", function (req, res) {
     // requesting access token from refresh token
     var refresh_token = req.query.refresh_token;
     var authOptions = {
@@ -136,7 +136,7 @@ module.exports = function(app) {
       json: true,
     };
 
-    request.post(authOptions, function(error, response, body) {
+    request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
         var access_token = body.access_token;
         res.send({
