@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $("#search").on("click", function(event) {
+  $("#search").on("click", function (event) {
     event.preventDefault();
 
     //Search function, required for main handlebars
@@ -20,8 +20,7 @@ $(document).ready(() => {
     // Clears results div each time a search is executed
     $(".results").html("");
 
-    const baseURL = "http://localhost:8080"; // May need to be updated on deployment?
-    const queryURL = `${baseURL}/api/search/${trackTitle}/${artistName}`;
+    const queryURL = `/api/search/${trackTitle}/${artistName}`;
 
     $.ajax({
       // Making an ajax call to our backend (search-routes.js)
