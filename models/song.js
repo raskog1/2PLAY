@@ -29,7 +29,7 @@ module.exports = function(sequelize, DataTypes) {
       default: null,
       validate: {
         max: 5,
-        min: 0,
+        min: 0.5,
       },
     },
     copilot_rating: {
@@ -37,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
       default: null,
       validate: {
         max: 5,
-        min: 0,
+        min: 0.5,
       },
     },
     avg_rating: {
