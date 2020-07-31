@@ -11,16 +11,20 @@ $(document).ready(() => {
       .find("input")
       .val();
 
-    // Get the song id from the button data-id
-    let songId = $(this).data("id");
+    if (score == 0) {
+      return;
+    } else {
+      // Get the song id from the button data-id
+      let songId = $(this).data("id");
 
-    // Get the user from the parent, parent div data.user
-    let user = $(this)
-      .parent()
-      .parent()
-      .data("user");
+      // Get the user from the parent, parent div data.user
+      let user = $(this)
+        .parent()
+        .parent()
+        .data("user");
 
-    rateSong(user, songId, score);
+      rateSong(user, songId, score);
+    }
   });
 
   // Event listener for Generate button to create playlist
