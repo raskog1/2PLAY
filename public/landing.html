@@ -1,40 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2PLAY</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2PLAY</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <!-- Bootstrap link -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-  <link href="css/styleLanding.css" rel="stylesheet" />
-</head>
+    <!-- Font Awesome link for Play button -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
 
-<body>
-  <div class="container">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col-xl-4 text-center">
-        <img src="images/logo1.png" alt="2play logo" class="logo" />
-        <br />
+    <!-- Specific page styling link -->
+    <link href="css/styleLanding.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col"></div>
+        <div class="col-xl-4 text-center">
+          <img src="images/logo1.png" alt="2PLAY logo" class="logo" />
+          <br />
+        </div>
+        <a id="play-video" class="video-play-button" href="/login">
+          <span></span>
+        </a>
+        <div class="col-xl-3">
+          <img src="images/cassette_tape.gif" alt="Cassette tape" class="gif" />
+        </div>
+        <div class="col-xl-4"></div>
       </div>
-      <a id="play-video" class="video-play-button" href="/login">
-        <!--UPDATE HREF HERE!!!-->
-        <span></span>
-      </a>
-      <div class="col-xl-3">
-        <img src="images/cassette_tape.gif" alt="Tape Recorder" class="gif" />
-      </div>
-      <div class="col-xl-4"></div>
     </div>
-  </div>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-  <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-  <!-- <script src="js/spotify.js"></script> -->
-</body>
-
+    <!-- jQuery link -->
+    <script
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+      integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
