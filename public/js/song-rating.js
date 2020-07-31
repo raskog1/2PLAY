@@ -72,12 +72,12 @@ $(document).ready(() => {
 
   // Finds all songs with pilot/copilot rating, and give average rating
   function getAverage() {
-    console.log("firing");
     $.get(`/api/songs/rated/${getPlaylistID()}`, (rated) => {
       rated.forEach((element) => {
         let a = element.pilot_rating;
         let b = element.copilot_rating;
-        let c = (a + b) / 2;
+        let c = (parseFloat(a) + parseFloat(b)) / 2;
+
         let average = {
           id: element.id,
           avg_rating: c,
@@ -96,7 +96,7 @@ $(document).ready(() => {
   function calcPassing() {
     $.get(`/api/songs/passing/${getPlaylistID()}`, (passing) => {
       console.log(passing.length);
-      if (passing.length > 3) {
+      if (passing.length > 5) {
         console.log("Generate Button Can be Initiated!!!");
         $("#generateComplete").css({
           verticalAlign: "middle",
@@ -107,7 +107,7 @@ $(document).ready(() => {
         $(".formContainer").attr("style", "display:none");
         $(".songsToRate").attr("style", "display:none");
 
-        // Need to hide search bar and ratings secition at this point
+        // Need to hide search bar and ratings section at this point
       } else {
         console.log(`You have ${passing.length} completed songs`);
       }

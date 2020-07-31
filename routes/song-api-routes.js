@@ -73,7 +73,7 @@ module.exports = function(app) {
       where: {
         PlaylistId: req.params.id,
         avg_rating: {
-          [Op.gt]: 3.0,
+          [Op.gt]: 3.5,
         },
       },
     }).then(function(passingSongs) {
