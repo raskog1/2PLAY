@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  $("#search").on("click", function (event) {
+  $("#search").on("click", function(event) {
     event.preventDefault();
 
     //Search function, required for main handlebars
@@ -38,6 +38,7 @@ $(document).ready(() => {
 
         // Creating a div to house the iframe and button
         const songDiv = $("<div>")
+          .addClass("suggested")
           .attr("id", `songDiv${i}`)
           // .attr("style", "z-index: 15;")
           .appendTo(".results");

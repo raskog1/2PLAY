@@ -82,6 +82,7 @@ $(document).ready(() => {
 
       // Creating a div to house the iframe and button
       const songDiv = $("<div>")
+        .addClass("toRate")
         .attr("id", `${divName}${i}`)
         .attr("data-id", id)
         .attr("data-title", title)

@@ -5,12 +5,14 @@ form.login {
 
 body {
   background-color: #3f3e66;
-  font-family: 'tw_cen_mt_stdbold';
+  font-family: "tw_cen_mt_stdbold";
 }
 
 label,
 p,
-h2 {
+h2,
+h5,
+h6 {
   color: #ffe0ac;
 }
 
@@ -32,7 +34,7 @@ h2 {
 }
 
 button {
-  font-family: 'tw_cen_mt_stdbold';
+  font-family: "tw_cen_mt_stdbold";
   text-align: center;
   text-transform: uppercase;
   color: #fff;
@@ -44,7 +46,7 @@ button {
 }
 
 .signUpButton:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
@@ -55,7 +57,7 @@ button {
   bottom: -30px;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Lato:100&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Lato:100&display=swap");
 .loginButton {
   width: 180px;
   height: 60px;
@@ -100,7 +102,7 @@ svg {
 
 h1 {
   color: #ffe0ac;
-  font-family: 'tw_cen_mt_stdbold';
+  font-family: "tw_cen_mt_stdbold";
   font-size: 50px;
   width: 500px;
 }
@@ -118,7 +120,7 @@ header {
 
 .header h1 {
   color: #3f3e66;
-  font-family: 'tw_cen_mt_stdbold';
+  font-family: "tw_cen_mt_stdbold";
   padding-left: 10px;
   display: inline;
   line-height: 1.5em;
