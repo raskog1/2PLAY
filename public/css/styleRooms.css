@@ -15,7 +15,7 @@ h1 {
   color: #ffe0ac;
   font-family: "tw_cen_mt_stdbold";
   font-size: 50px;
-  width: 500px;
+  width: 100%;
 }
 
 header {
@@ -25,6 +25,10 @@ header {
   height: 100px;
 }
 
+.row {
+  width: 80%;
+}
+
 .header img {
   margin-bottom: 25px;
 }
@@ -32,7 +36,40 @@ header {
 .header h1 {
   color: #3f3e66;
   font-family: "tw_cen_mt_stdbold";
-  padding-left: 10px;
+  padding-left: 20px;
   display: inline;
   line-height: 1.5em;
+}
+
+/* Better spacing between selection elements */
+@media only screen and (max-width: 1024px) {
+  .text-center h1 {
+    font-size: 44px;
+    margin-bottom: 70px;
+  }
+
+  .container {
+    padding-top: 80px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .text-center h1 {
+    font-size: 42px;
+  }
+}
+
+/* Scale down the logo/image on small screens */
+@media only screen and (max-width: 375px) {
+  .header a {
+    transform: scale(0.8);
+  }
+
+  .header h1 {
+    font-size: 38px;
+  }
+
+  .text-center h1 {
+    font-size: 32px;
+  }
 }
