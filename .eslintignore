@@ -1,2 +1,5 @@
 models/index.js
+routes/
+public/
+models/
 node_modules

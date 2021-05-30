@@ -1,24 +1,17 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
-require("dotenv").config();
 const express = require("express");
 const session = require("express-session");
 const passport = require("./config/passport");
 const exphbs = require("express-handlebars");
+const routes = require("./routes");
 
-// Sets up the Express App
-// =============================================================
+require("dotenv").config();
+
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-// Requiring our models for syncing
 const db = require("./models");
 
-// Sets up the Express app to handle data parsing
+// Express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -35,18 +28,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes
-// =============================================================
-require("./routes/html-routes.js")(app);
-require("./routes/song-api-routes.js")(app);
-require("./routes/playlist-api-routes.js")(app);
-require("./routes/spotify-routes.js")(app);
-require("./routes/passport-api-routes.js")(app);
-require("./routes/search-routes.js")(app);
+app.use(routes);
 
 // Syncing our sequelize models and then starting our Express app
-// =============================================================
-db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => {
     console.log("App listening on PORT " + PORT);
   });
 });

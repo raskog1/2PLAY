@@ -1,5 +1,5 @@
 //need for complete.handlebars and existing.handlebars
-$(document).ready(function() {
+$(document).ready(function () {
   $(".mediaButton").css({
     width: "50px",
     height: "50px",
@@ -12,24 +12,22 @@ $(document).ready(function() {
   getStatus();
 
   // Event listener for playlist Generator button
-  $("#generateComplete").on("click", function(event) {
+  $("#generateComplete").on("click", function (event) {
     event.preventDefault();
     generatePlaylist();
   });
 
   // Event listener for selecting a playlist to work on
-  $("body").on("click", ".playlistItem", function() {
+  $("body").on("click", ".playlistItem", function () {
     const id = $(this).data("id");
     window.location.href = "/existing?playlist_id=" + id;
   });
 
   // Event listener for selecting a completed playlist to view songs from
-  $("body").on("click", ".completeList", function() {
+  $("body").on("click", ".completeList", function () {
     $(".track-listing").remove();
 
-    const list = $("<ol>")
-      .addClass("track-listing")
-      .appendTo($(this).parent());
+    const list = $("<ol>").addClass("track-listing").appendTo($(this).parent());
     $.get(`/api/songs/${$(this).data("id")}`, (songList) => {
       for (let i = 0; i < trackLimit; i++) {
         let track = $("<li>")
@@ -41,7 +39,7 @@ $(document).ready(function() {
   });
 
   // Event listener to push the completed playlist to Spotify
-  $("body").on("click", ".spotifyPush", function() {
+  $("body").on("click", ".spotifyPush", function () {
     const id = $(this).data("id");
     $.ajax({
       url: `/api/post-playlist/${id}`,
@@ -61,11 +59,11 @@ $(document).ready(function() {
   // Searches URL for current page and executes related functions
   function getStatus() {
     if (path === "/complete") {
-      $.get("/api/user_data", (response) => {
+      $.get("/api/users/user_data", (response) => {
         viewComplete(response.id);
       });
     } else if (path === "/incomplete") {
-      $.get("/api/user_data", (response) => {
+      $.get("/api/users/user_data", (response) => {
         viewIncomplete(response.id);
       });
     }
@@ -135,7 +133,7 @@ $(document).ready(function() {
       method: "PUT",
       url: `/api/playlists/${id}`,
       data: { completed: true },
-    }).then(function() {
+    }).then(function () {
       window.location.replace("/complete");
       filterFailed(id);
     });

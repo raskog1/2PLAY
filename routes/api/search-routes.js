@@ -1,7 +1,7 @@
 const axios = require("axios");
-const db = require("../models");
+const db = require("../../models");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Song search via Spotify API feeding in title and/or artist
   app.get("/api/search/:title/:artist?", (req, res) => {
     const access_token = req.cookies["spotifyAccessToken"];
